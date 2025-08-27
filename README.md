@@ -1,2 +1,2 @@
 # YTB-Hukuk
-YTB Hukuk bürosunun resmi internet sitesini tasarladım.
+YTB Hukuk bürosunun resmi web sitesi tasarlandı.
