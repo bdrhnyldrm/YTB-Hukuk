@@ -126,9 +126,7 @@ export function Footer() {
         <div className="border-t border-primary-foreground/20 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-primary-foreground/60">
             <p>© 2024 YTB Hukuk. Tüm hakları saklıdır.</p>
-            <p className="mt-2 md:mt-0">
-              Tasarım ve geliştirme ile ❤️ yapıldı
-            </p>
+
           </div>
         </div>
       </div>
