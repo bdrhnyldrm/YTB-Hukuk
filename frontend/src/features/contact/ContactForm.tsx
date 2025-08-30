@@ -53,8 +53,8 @@ export default function ContactForm() {
           <div className="rounded-2xl border bg-white p-6 shadow-sm">
             <h2 className="mb-4 text-xl font-semibold">İletişim Bilgileri</h2>
             <ul className="space-y-3 text-slate-700">
-              <li>📍 Beyoğlu Mahallesi, Galata Kulesi Sok. No:15/3, Beyoğlu/İstanbul</li>
-              <li>📞 +90 (212) 555 12 34</li>
+              <li>📍 Gülbahar Hatun Mahallesi, Nur Sk. Kat : 4 Daire No : 8, 61040 Ortahisar/Trabzon</li>
+              <li>📞 0505 389 18 74</li>
               <li>✉️ info@ytbhukuk.com</li>
             </ul>
 
@@ -63,8 +63,32 @@ export default function ContactForm() {
               <p className="text-slate-600">Pazartesi – Cuma: 09:00 – 18:00</p>
             </div>
 
-            {/* İsteğe bağlı harita alanı (placeholder) */}
-            <div className="mt-6 h-40 w-full rounded-xl bg-slate-100" />
+            {/* Harita */}
+            <div className="mt-6">
+              <div className="w-full h-64 md:h-80 rounded-2xl overflow-hidden border border-primary/10 shadow-inner">
+                <iframe
+                  title="YTB Hukuk Ofis Konumu"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.8794661466504!2d39.71091037551377!3d41.00601131956528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40643d1c41bdd017%3A0xdfac81fef77fc93c!2zQXZ1a2F0IEFsaSDEsGhzYW4gWcSxbGTEsXLEsW0!5e0!3m2!1str!2str!4v1756550845394!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
+
+              {/* İsteğe bağlı: Haritayı Google'da aç linki */}
+              <a
+                href="https://www.google.com/maps/place/Avukat+Ali+%C4%B0hsan+Y%C4%B1ld%C4%B1r%C4%B1m/@41.0060113,39.7109104,17z/data=!3m1!4b1!4m6!3m5!1s0x40643d1c41bdd017:0xdfac81fef77fc93c!8m2!3d41.0060073!4d39.7134853!16s%2Fg%2F11kb8b59x5?entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center mt-3 text-sm underline text-primary hover:opacity-80"
+              >
+                Haritada aç
+              </a>
+            </div>
+
           </div>
 
           {/* Sağ: Form kartı */}
