@@ -16,9 +16,9 @@ const legalLinks = [
 ];
 
 const socialLinks = [
-  { name: "Twitter", href: "https://twitter.com/ytb_hukuk", icon: Twitter },
-  { name: "LinkedIn", href: "https://linkedin.com/company/ytb-hukuk", icon: Linkedin },
-  { name: "Instagram", href: "https://instagram.com/ytb_hukuk", icon: Instagram },
+  { name: "Twitter", href: "https://x.com/avaliihsanyldrm", icon: Twitter },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/ali-ihsan-y%C4%B1ld%C4%B1r%C4%B1m-a64946181/", icon: Linkedin },
+  { name: "Instagram", href: "https://www.instagram.com/ytbhukuk2025/", icon: Instagram },
 ];
 
 export function Footer() {
@@ -113,7 +113,8 @@ export function Footer() {
                     href="mailto:info@ytbhukuk.com" 
                     className="text-primary-foreground/80 hover:text-accent transition-colors duration-200"
                   >
-                    info@ytbhukuk.com
+                    av.aliihsanyldrm@gmail.com
+                    av.sukurtemel@gmail.com
                   </a>
                 </div>
               </div>
