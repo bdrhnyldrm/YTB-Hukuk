@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react"; // istersen ikon kullanmayabilirsin
 
 const reviews = [
   {
@@ -8,15 +10,15 @@ const reviews = [
     rating: 5,
   },
   {
-    name: "Aleyna Gözde Genç",
+    name: "Tunahan Aslan",
     date: "15 Ocak 2024",
-    text: "Muris muvazaası nedeniyle gittiğim Y&T Hukuk Bürosu'nu tercih ettiğim için çok şanslıyım. Bana yardımlarını esirgemeyen, işini hakkıyla yapan, takip eden, çok hızlı bir şekilde sonuçlandıran ve tüm dava aşamalarında beni bilgilendirerek yanımda olduğu için Sayın Av. Şükür TEMEL' e ayrıca teşekkür ederim. Güvenilir bir avukat, güvenilir bir hukuk bürosu. Başarılarınızın devamını dilerim.",
+    text: "Bir ceza davamızda yardımcı oldular.Tüm süreç boyunca gayet güzel bir şekilde ilgilendiler. Her iki avukat da gayet güleryüzlü ve samimiler. Kendilerinden çok memnun kaldık.",
     rating: 5,
   },
   {
-    name: "Hüseyin",
+    name: "Ahmet Furkan Duran",
     date: "10 Ocak 2024",
-    text: "Ceza hukukunda savunma hususunun ne kadar önemli ve teknik bir konu olması dikkate alındığında bu konuda her türlü özen ve emeğin en güzel şekilde icra edildiğine bizzat şahit olduğum hukuk bürosu, dolayısıyla şehir farketmeksizin ceza avukatına ihtiyaç olduğunda iletişime geçilmesini ısrarla tavsiye ederim.",
+    text: "Kendilerinden tapu ile ilgili danışmanlık aldık. Tüm sorularımızı sabırla ve içtenlikle cevapladılar.Çok deneyimli ve ilgililer. Teşekkür ediyorum her şey için, fazlasıyla memnun kaldım.",
     rating: 5,
   },
 ];
@@ -25,7 +27,7 @@ const GoogleReviews = () => {
   return (
     <section className="pt-1 pb-16 bg-gray-50">
       <div className="container mx-auto px-6">
-        <h2 className="text-5xl font-bold text-center mb-10">
+        <h2 className="text-4xl lg:text-5xl font-bold text-primary text-center mb-10">
           İşletme Yorumları
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
@@ -45,14 +47,16 @@ const GoogleReviews = () => {
           ))}
         </div>
         <div className="text-center mt-8">
-          <a
-            href="https://www.google.com/search?sca_esv=0341e61adf0435df&tbm=lcl&sxsrf=AE3TifMMPOw2l4e2l7N4iG59AFhmi2I0wQ:1756735380132&q=Avukat+Ali+%C4%B0hsan+Y%C4%B1ld%C4%B1r%C4%B1m+Yorumlar&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDM0NDcxMDCwtDA1MjO0MDW3sNjAyPiKUc2xrDQ7sUTBMSdT4ciGjOLEPIXIIxtzUo5sLDqyMVchMr-oNDcnsWgRK5EKAay6sMttAAAA&rldimm=16117400098526185788&hl=tr-TR&sa=X&ved=2ahUKEwiJg7Ci3bePAxUwQvEDHejyAEYQ9fQKegQIPBAF&biw=1536&bih=695&dpr=1.25#lkt=LocalPoiReviews"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 font-medium hover:underline"
-          >
-            Tüm Yorumları Gör
-          </a>
+          <Button asChild size="lg" className="btn-hero">
+            <a
+              href="https://www.google.com/search?sa=X&sca_esv=6bae24b5c791315b&tbm=lcl&sxsrf=AE3TifOJ2ZbKMnDuPzWqP2B4TJU561o5yg:1756739788654&q=Avukat+Ali+%C4%B0hsan+Y%C4%B1ld%C4%B1r%C4%B1m+Yorumlar&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDM0NDcxMDCwtDA1MjO0MDW3sNjAyPiKUc2xrDQ7sUTBMSdT4ciGjOLEPIXIIxtzUo5sLDqyMVchMr-oNDcnsWgRK5EKAay6sMttAAAA&rldimm=16117400098526185788&hl=tr-TR&ved=2ahUKEwiHz8LY7bePAxVlSPEDHYe7GBcQ9fQKegQITxAF&biw=1536&bih=695&dpr=1.25#lkt=LocalPoiReviews" // kendi işletme linkin
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Tüm Yorumları Gör
+              <ExternalLink className="ml-2 w-5 h-5" />
+            </a>
+          </Button>
         </div>
       </div>
     </section>
