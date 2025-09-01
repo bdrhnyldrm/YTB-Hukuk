@@ -23,10 +23,10 @@ const reviews = [
 
 const GoogleReviews = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="pt-1 pb-16 bg-gray-50">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-10">
-          Google İşletme Yorumları
+        <h2 className="text-5xl font-bold text-center mb-10">
+          İşletme Yorumları
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {reviews.map((review, idx) => (
