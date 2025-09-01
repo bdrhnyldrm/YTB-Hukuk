@@ -6,28 +6,28 @@ import { Section } from "@/components/ui/section";
 
 const services = [
   {
-    title: "Ticaret Hukuku",
-    description: "Şirket kuruluşu, birleşme ve devir işlemleri, ticari anlaşmazlıklar",
-    icon: Building2,
-    href: "/dava-alanlari/ticaret-hukuku"
+    title: "Ceza Hukuku",
+    description: "Savunma stratejileri, soruşturma süreçleri, dava takibi ve infaz hukuku",
+    icon: Shield,
+    href: "/dava-alanlari/ceza-hukuku"
   },
   {
     title: "İş Hukuku",
-    description: "İş sözleşmeleri, işçi hakları, iş kazaları ve mesleki hastalıklar",
+    description: "İşçi ve işveren hakları, iş sözleşmeleri, iş kazaları ve tazminat davaları",
     icon: Users,
     href: "/dava-alanlari/is-hukuku"
   },
   {
     title: "Aile Hukuku",
-    description: "Boşanma, velayet, nafaka, mal paylaşımı ve aile içi anlaşmazlıklar",
+    description: "Boşanma, velayet, nafaka, mal paylaşımı ve evlat edinme davaları",
     icon: Heart,
     href: "/dava-alanlari/aile-hukuku"
   },
   {
-    title: "Ceza Hukuku",
-    description: "Suç davaları, müdafilik, mağdur hakları ve ceza hukuku danışmanlığı",
-    icon: Shield,
-    href: "/dava-alanlari/ceza-hukuku"
+    title: "Ticaret Hukuku",
+    description: "Şirket kuruluşu, sözleşmeler, ortaklık anlaşmazlıkları ve ticari davalar",
+    icon: Building2,
+    href: "/dava-alanlari/ticaret-hukuku"
   },
   {
     title: "İcra ve İflas",
@@ -36,11 +36,29 @@ const services = [
     href: "/dava-alanlari/icra-iflas"
   },
   {
-    title: "Fikri Mülkiyet",
-    description: "Marka, patent, telif hakları ve fikri mülkiyet korunması",
+    title: "İdari Hukuk",
+    description: "İptal davası, tam yargı davası, idari sözleşmeler ve kamu hukuku",
     icon: Copyright,
-    href: "/dava-alanlari/fikri-mulkiyet"
-  }
+    href: "/dava-alanlari/idari-hukuk"
+  },
+  {
+      title: "Tazminat Hukuku",
+      description: "Maddi ve manevi tazminat davaları, sigorta hukuku, trafik ve iş kazaları, araç değer kaybı ve zarar gören hakları",
+      icon: Building2,
+      href: "/dava-alanlari/ticaret-hukuku"
+  },
+  {
+        title: "Kira Hukuku",
+        description: "Kira sözleşmeleri, tahliye davaları, kira bedelinin tespiti davaları, kira artışları, kiracı ve kiralayan hakları",
+        icon: Building2,
+        href: "/dava-alanlari/ticaret-hukuku"
+  },
+  {
+      title: "Kat Mülkiyeti ve Emlak Hukuku",
+      description: "Kat mülkiyeti kurulması, ortak giderler, aidat, site yönetimi vekilliği, emlak alım satım işlemleri, tapu iptali ve tescil davaları",
+      icon: Heart,
+      href: "/dava-alanlari/aile-hukuku"
+  },
 ];
 
 export function ServicesSection() {

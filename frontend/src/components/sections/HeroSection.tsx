@@ -7,7 +7,7 @@ import heroImage from "@/assets/hero-law-firm.jpg";
 const stats = [
   { label: "Başarılı Dava", value: "500+", icon: Shield },
   { label: "Memnun Müvekkil", value: "1200+", icon: Users },
-  { label: "Yıllık Deneyim", value: "15+", icon: Award },
+  { label: "Uzlaşılan Dosya", value: "150+", icon: Award },
 ];
 
 export function HeroSection() {
@@ -42,15 +42,15 @@ export function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="btn-hero text-lg px-8 py-4">
                 <Link to="/iletisim">
-                  Ücretsiz Danışmanlık
+                  Randevu Al
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
               <Button 
-                asChild 
-                variant="outline" 
-                size="lg" 
-                className="btn-outline-gold text-lg px-8 py-4 border-white/30 text-white hover:bg-white hover:text-primary"
+                asChild
+                variant="outline"
+                size="lg"
+                className="btn-outline-gold text-lg px-8 py-4 border-white/30 bg-white text-slate-900 hover:bg-white/90 hover:text-slate-900"
               >
                 <Link to="/dava-alanlari">
                   Uzmanlık Alanları
