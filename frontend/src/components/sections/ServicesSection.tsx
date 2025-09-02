@@ -5,60 +5,15 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 
 const services = [
-  {
-    title: "Ceza Hukuku",
-    description: "Savunma stratejileri, soruşturma süreçleri, dava takibi ve infaz hukuku",
-    icon: Shield,
-    href: "/dava-alanlari/ceza-hukuku"
-  },
-  {
-    title: "İş Hukuku",
-    description: "İşçi ve işveren hakları, iş sözleşmeleri, iş kazaları ve tazminat davaları",
-    icon: Users,
-    href: "/dava-alanlari/is-hukuku"
-  },
-  {
-    title: "Aile Hukuku",
-    description: "Boşanma, velayet, nafaka, mal paylaşımı ve evlat edinme davaları",
-    icon: Heart,
-    href: "/dava-alanlari/aile-hukuku"
-  },
-  {
-    title: "Ticaret Hukuku",
-    description: "Şirket kuruluşu, sözleşmeler, ortaklık anlaşmazlıkları ve ticari davalar",
-    icon: Building2,
-    href: "/dava-alanlari/ticaret-hukuku"
-  },
-  {
-    title: "İcra ve İflas",
-    description: "Alacak takibi, icra takipleri, iflas işlemleri ve konkordato",
-    icon: Briefcase,
-    href: "/dava-alanlari/icra-iflas"
-  },
-  {
-    title: "İdari Hukuk",
-    description: "İptal davası, tam yargı davası, idari sözleşmeler ve kamu hukuku",
-    icon: Copyright,
-    href: "/dava-alanlari/idari-hukuk"
-  },
-  {
-      title: "Tazminat Hukuku",
-      description: "Maddi ve manevi tazminat davaları, sigorta hukuku, trafik ve iş kazaları, araç değer kaybı ve zarar gören hakları",
-      icon: Building2,
-      href: "/dava-alanlari/ticaret-hukuku"
-  },
-  {
-        title: "Kira Hukuku",
-        description: "Kira sözleşmeleri, tahliye davaları, kira bedelinin tespiti davaları, kira artışları, kiracı ve kiralayan hakları",
-        icon: Building2,
-        href: "/dava-alanlari/ticaret-hukuku"
-  },
-  {
-      title: "Kat Mülkiyeti ve Emlak Hukuku",
-      description: "Kat mülkiyeti kurulması, ortak giderler, aidat, site yönetimi vekilliği, emlak alım satım işlemleri, tapu iptali ve tescil davaları",
-      icon: Heart,
-      href: "/dava-alanlari/aile-hukuku"
-  },
+  { title: "Ceza Hukuku", description: "Savunma stratejileri, soruşturma süreçleri, dava takibi ve infaz hukuku", icon: Shield, href: "/dava-alanlari/ceza-hukuku" },
+  { title: "İş Hukuku", description: "İşçi ve işveren hakları, iş sözleşmeleri, iş kazaları ve tazminat davaları", icon: Users, href: "/dava-alanlari/is-hukuku" },
+  { title: "Aile Hukuku", description: "Boşanma, velayet, nafaka, mal paylaşımı ve evlat edinme davaları", icon: Heart, href: "/dava-alanlari/aile-hukuku" },
+  { title: "Ticaret Hukuku", description: "Şirket kuruluşu, sözleşmeler, ortaklık anlaşmazlıkları ve ticari davalar", icon: Building2, href: "/dava-alanlari/ticaret-hukuku" },
+  { title: "İcra ve İflas", description: "Alacak takibi, icra takipleri, iflas işlemleri ve konkordato", icon: Briefcase, href: "/dava-alanlari/icra-iflas" },
+  { title: "İdari Hukuk", description: "İptal davası, tam yargı davası, idari sözleşmeler ve kamu hukuku", icon: Copyright, href: "/dava-alanlari/idari-hukuk" },
+  { title: "Tazminat Hukuku", description: "Maddi ve manevi tazminat davaları, sigorta hukuku, trafik ve iş kazaları, araç değer kaybı ve zarar gören hakları", icon: Building2, href: "/dava-alanlari/tazminat-hukuku" },
+  { title: "Kira Hukuku", description: "Kira sözleşmeleri, tahliye davaları, kira bedelinin tespiti davaları, kira artışları, kiracı ve kiralayan hakları", icon: Building2, href: "/dava-alanlari/kira-hukuku" },
+  { title: "Kat Mülkiyeti ve Emlak Hukuku", description: "Kat mülkiyeti kurulması, ortak giderler, aidat, site yönetimi vekilliği, emlak alım satım işlemleri, tapu iptali ve tescil davaları", icon: Heart, href: "/dava-alanlari/emlak-hukuku" },
 ];
 
 export function ServicesSection() {
@@ -66,11 +21,9 @@ export function ServicesSection() {
     <Section background="muted">
       <Container>
         <div className="text-center space-y-6 mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-primary">
-            Uzmanlık Alanlarımız
-          </h2>
+          <h2 className="text-4xl lg:text-5xl font-bold text-primary">Uzmanlık Alanlarımız</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Hukuk dünyasının farklı alanlarında uzman kadromuzla, 
+            Hukuk dünyasının farklı alanlarında uzman kadromuzla,
             tüm hukuki ihtiyaçlarınıza profesyonel çözümler sunuyoruz.
           </p>
         </div>
@@ -80,22 +33,28 @@ export function ServicesSection() {
             <Link
               key={service.title}
               to={service.href}
-              className="card-corporate group hover:shadow-corporate transition-all duration-300"
+              className="card-corporate group hover:shadow-corporate transition-all duration-300 flex flex-col justify-between min-h-64"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="flex items-start space-x-4">
-                <div className="w-14 h-14 gradient-gold rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-7 h-7 text-white" />
+              {/* Üst blok: ikon, başlık, açıklama */}
+              <div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-14 h-14 gradient-gold rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <service.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-primary mb-3 group-hover:text-accent transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-primary mb-3 group-hover:text-accent transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
+
+                <p className="text-muted-foreground leading-relaxed mt-3">
+                  {service.description}
+                </p>
               </div>
+
+              {/* Alt blok: Detaylar (her zaman en altta) */}
               <div className="mt-6 flex items-center text-accent group-hover:translate-x-2 transition-transform duration-300">
                 <span className="font-medium">Detaylar</span>
                 <ArrowRight className="ml-2 w-4 h-4" />
