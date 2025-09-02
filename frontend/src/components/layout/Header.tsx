@@ -9,8 +9,8 @@ const navigation = [
   { name: "Ekibimiz", href: "/ekibimiz" },
   { name: "Dava Alanlarımız", href: "/dava-alanlari" },
   { name: "Makaleler", href: "/makaleler" },
-  { name: "Kariyer", href: "/kariyer" },
   { name: "İletişim", href: "/iletisim" },
+  { name: "Kariyer", href: "/kariyer" },
   { name: "Ödeme", href: "/odeme" }
 ];
 

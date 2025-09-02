@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ContactForm from "./features/contact/ContactForm";
 import PaymentPage from "./pages/Payment";
+import AboutPage from "./pages/About";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/iletisim" element={<ContactForm />} /> {/*Burda ise bu path yolu geldiğinde üsttek SiteLayout yapısını koruyarak sadece bu yolun belirttiği dosyanın içeriğini sayfaya ekliyor.*/}
             <Route path="/odeme" element={<PaymentPage />} />
+            <Route path="/hakkimizda" element={<AboutPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>
