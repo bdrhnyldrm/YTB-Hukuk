@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Building2, Users, Heart, Shield, Briefcase, Copyright } from "lucide-react";
+import { ArrowRight, Building2, Users, Heart, Shield, Briefcase, Copyright, Gavel, Home, MapPinHouse, Landmark, HeartHandshake, FileCheck2, BriefcaseBusiness, FileWarning } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 
 const services = [
-  { title: "Ceza Hukuku", description: "Savunma stratejileri, soruşturma süreçleri, dava takibi ve infaz hukuku", icon: Shield, href: "/dava-alanlari/ceza-hukuku" },
-  { title: "İş Hukuku", description: "İşçi ve işveren hakları, iş sözleşmeleri, iş kazaları ve tazminat davaları", icon: Users, href: "/dava-alanlari/is-hukuku" },
-  { title: "Aile Hukuku", description: "Boşanma, velayet, nafaka, mal paylaşımı ve evlat edinme davaları", icon: Heart, href: "/dava-alanlari/aile-hukuku" },
+  { title: "Ceza Hukuku", description: "Savunma stratejileri, soruşturma süreçleri, dava takibi ve infaz hukuku", icon: Gavel, href: "/dava-alanlari/ceza-hukuku" },
+  { title: "İş Hukuku", description: "İşçi ve işveren hakları, iş sözleşmeleri, iş kazaları ve tazminat davaları", icon: BriefcaseBusiness, href: "/dava-alanlari/is-hukuku" },
+  { title: "Aile Hukuku", description: "Boşanma, velayet, nafaka, mal paylaşımı ve evlat edinme davaları", icon: HeartHandshake, href: "/dava-alanlari/aile-hukuku" },
   { title: "Ticaret Hukuku", description: "Şirket kuruluşu, sözleşmeler, ortaklık anlaşmazlıkları ve ticari davalar", icon: Building2, href: "/dava-alanlari/ticaret-hukuku" },
-  { title: "İcra ve İflas", description: "Alacak takibi, icra takipleri, iflas işlemleri ve konkordato", icon: Briefcase, href: "/dava-alanlari/icra-iflas" },
-  { title: "İdari Hukuk", description: "İptal davası, tam yargı davası, idari sözleşmeler ve kamu hukuku", icon: Copyright, href: "/dava-alanlari/idari-hukuk" },
-  { title: "Tazminat Hukuku", description: "Maddi ve manevi tazminat davaları, sigorta hukuku, trafik ve iş kazaları, araç değer kaybı ve zarar gören hakları", icon: Building2, href: "/dava-alanlari/tazminat-hukuku" },
-  { title: "Kira Hukuku", description: "Kira sözleşmeleri, tahliye davaları, kira bedelinin tespiti davaları, kira artışları, kiracı ve kiralayan hakları", icon: Building2, href: "/dava-alanlari/kira-hukuku" },
-  { title: "Kat Mülkiyeti ve Emlak Hukuku", description: "Kat mülkiyeti kurulması, ortak giderler, aidat, site yönetimi vekilliği, emlak alım satım işlemleri, tapu iptali ve tescil davaları", icon: Heart, href: "/dava-alanlari/emlak-hukuku" },
+  { title: "İcra ve İflas", description: "Alacak takibi, icra takipleri, iflas işlemleri ve konkordato", icon: FileWarning, href: "/dava-alanlari/icra-iflas" },
+  { title: "İdari Hukuk", description: "İptal davası, tam yargı davası, idari sözleşmeler ve kamu hukuku", icon: Landmark, href: "/dava-alanlari/idari-hukuk" },
+  { title: "Tazminat Hukuku", description: "Maddi ve manevi tazminat davaları, sigorta hukuku, trafik ve iş kazaları, araç değer kaybı ve zarar gören hakları", icon: FileCheck2, href: "/dava-alanlari/tazminat-hukuku" },
+  { title: "Kira Hukuku", description: "Kira sözleşmeleri, tahliye davaları, kira bedelinin tespiti davaları, kira artışları, kiracı ve kiralayan hakları", icon: Home, href: "/dava-alanlari/kira-hukuku" },
+  { title: "Kat Mülkiyeti ve Emlak Hukuku", description: "Kat mülkiyeti kurulması, ortak giderler, aidat, site yönetimi vekilliği, emlak alım satım işlemleri, tapu iptali ve tescil davaları", icon: MapPinHouse, href: "/dava-alanlari/emlak-hukuku" },
 ];
 
 export function ServicesSection() {

@@ -99,7 +99,7 @@ export function Footer() {
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-accent" />
+                  <Phone className="w-5 h-10 text-accent" />
                   <a 
                     href="tel:+902125551234" 
                     className="text-primary-foreground/80 hover:text-accent transition-colors duration-200"
@@ -108,15 +108,16 @@ export function Footer() {
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-accent" />
+                  <Mail className="w-5 h-10 text-accent" />
                   <a 
                     href="mailto:info@ytbhukuk.com" 
                     className="text-primary-foreground/80 hover:text-accent transition-colors duration-200"
                   >
-                    av.aliihsanyldrm@gmail.com
-                    av.sukurtemel@gmail.com
+                    ytbhukuk@gmail.com
                   </a>
+
                 </div>
+
               </div>
             </div>
           </div>
@@ -125,7 +126,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-primary-foreground/20 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-primary-foreground/60">
-            <p>© 2024 YTB Hukuk. Tüm hakları saklıdır.</p>
+            <p>© YTB Hukuk. Tüm hakları saklıdır.</p>
 
           </div>
         </div>

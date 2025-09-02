@@ -55,7 +55,7 @@ export default function ContactForm() {
             <ul className="space-y-3 text-slate-700">
               <li>📍 Gülbahar Hatun Mahallesi, Nur Sk. Kat : 4 Daire No : 8, 61040 Ortahisar/Trabzon</li>
               <li>📞 0505 389 18 74</li>
-              <li>✉️ YTBHukuk@gmail.com</li>
+              <li>✉️ ytbukuk@gmail.com</li>
 
             </ul>
 
