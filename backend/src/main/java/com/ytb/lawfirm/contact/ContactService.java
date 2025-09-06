@@ -18,7 +18,7 @@ public class ContactService {
 
     public ContactService(
             EmailService emailService,
-            @Value("${app.contact.recipient:bedirhan.yildirim1@ogr.sakarya.edu.tr}") String recipient
+            @Value("${app.contact.recipient:ytbhukuk@gmail.com}") String recipient
     ) {
         this.emailService = emailService;
         this.recipient = recipient;
