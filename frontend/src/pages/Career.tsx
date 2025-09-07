@@ -1,6 +1,6 @@
 import { GraduationCap, Briefcase, UploadCloud } from "lucide-react";
 import { useState } from "react";
-import { postForm } from "@/lib/api"; // ✅ eklendi
+import { postForm } from "@/lib/api";
 
 type FileOrNull = File | null;
 
@@ -8,26 +8,35 @@ export default function CareerPage() {
   const [internCv, setInternCv] = useState<FileOrNull>(null);
   const [jobCv, setJobCv] = useState<FileOrNull>(null);
 
+  // inline mesaj/loader state'leri
+  const [internLoading, setInternLoading] = useState(false);
+  const [jobLoading, setJobLoading] = useState(false);
+  const [internResult, setInternResult] = useState<{ ok: boolean; text: string } | null>(null);
+  const [jobResult, setJobResult] = useState<{ ok: boolean; text: string } | null>(null);
+
   // ---------- STAJ BAŞVURUSU ----------
   const handleInternSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formEl = e.currentTarget;
 
-    // KVKK kontrol
     const kvkk = (formEl.elements.namedItem("kvkkIntern") as HTMLInputElement | null)?.checked;
     if (!kvkk) {
-      alert("Lütfen KVKK onay kutusunu işaretleyin.");
+      setInternResult({ ok: false, text: "Lütfen KVKK onay kutusunu işaretleyin." });
       return;
     }
 
     const fd = new FormData(formEl);
+    setInternLoading(true);
+    setInternResult(null);
     try {
       const r = await postForm<{ message: string }>("/api/career/internship", fd);
-      alert(r.message || "Staj başvurunuz alınmıştır.");
+      setInternResult({ ok: true, text: r?.message ?? "Başvurunuz iletildi." });
       formEl.reset();
       setInternCv(null);
     } catch (err: any) {
-      alert(err.message || "Staj başvurusu gönderilemedi.");
+      setInternResult({ ok: false, text: err?.message || "Başvuru gönderilemedi." });
+    } finally {
+      setInternLoading(false);
     }
   };
 
@@ -36,21 +45,24 @@ export default function CareerPage() {
     e.preventDefault();
     const formEl = e.currentTarget;
 
-    // KVKK kontrol
     const kvkk = (formEl.elements.namedItem("kvkkJob") as HTMLInputElement | null)?.checked;
     if (!kvkk) {
-      alert("Lütfen KVKK onay kutusunu işaretleyin.");
+      setJobResult({ ok: false, text: "Lütfen KVKK onay kutusunu işaretleyin." });
       return;
     }
 
     const fd = new FormData(formEl);
+    setJobLoading(true);
+    setJobResult(null);
     try {
       const r = await postForm<{ message: string }>("/api/career/job", fd);
-      alert(r.message || "İş başvurunuz alınmıştır.");
+      setJobResult({ ok: true, text: r?.message ?? "Başvurunuz iletildi." });
       formEl.reset();
       setJobCv(null);
     } catch (err: any) {
-      alert(err.message || "İş başvurusu gönderilemedi.");
+      setJobResult({ ok: false, text: err?.message || "Başvuru gönderilemedi." });
+    } finally {
+      setJobLoading(false);
     }
   };
 
@@ -82,7 +94,6 @@ export default function CareerPage() {
               Hukuk fakültesi öğrencileri ve yeni mezunlar için dönemsel staj imkânı sunuyoruz.
             </p>
 
-            {/* name alanlarını backend'e göre güncelledik */}
             <form onSubmit={handleInternSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input name="name" label="Ad Soyad" required />
@@ -101,12 +112,21 @@ export default function CareerPage() {
                 required
               />
 
-              {/* backend alan adı: note */}
               <Textarea name="note" label="Kısa Not (opsiyonel)" placeholder="Kendinizi kısaca tanıtın..." />
 
               <Kvkk name="kvkkIntern" />
 
-              <SubmitButton>Staj Başvurusu Gönder</SubmitButton>
+              <div className="space-y-2">
+                <SubmitButton disabled={internLoading}>
+                  {internLoading ? "Gönderiliyor..." : "Staj Başvurusu Gönder"}
+                </SubmitButton>
+
+                {internResult && (
+                  <p className={internResult.ok ? "text-green-600" : "text-red-600"}>
+                    {internResult.text}
+                  </p>
+                )}
+              </div>
             </form>
           </div>
 
@@ -141,12 +161,21 @@ export default function CareerPage() {
                 required
               />
 
-              {/* backend alan adı: coverLetter */}
               <Textarea name="coverLetter" label="Ön Yazı (opsiyonel)" placeholder="Motivasyon ve deneyimleriniz..." />
 
               <Kvkk name="kvkkJob" />
 
-              <SubmitButton>İş Başvurusu Gönder</SubmitButton>
+              <div className="space-y-2">
+                <SubmitButton disabled={jobLoading}>
+                  {jobLoading ? "Gönderiliyor..." : "İş Başvurusu Gönder"}
+                </SubmitButton>
+
+                {jobResult && (
+                  <p className={jobResult.ok ? "text-green-600" : "text-red-600"}>
+                    {jobResult.text}
+                  </p>
+                )}
+              </div>
             </form>
           </div>
         </div>
@@ -252,11 +281,18 @@ function Kvkk({ name }: { name: string }) {
   );
 }
 
-function SubmitButton({ children }: { children: React.ReactNode }) {
+function SubmitButton({
+  children,
+  disabled,
+}: {
+  children: React.ReactNode;
+  disabled?: boolean;
+}) {
   return (
     <button
       type="submit"
-      className="inline-flex items-center justify-center rounded-full px-7 py-3 font-semibold text-white bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-md hover:shadow-lg transition"
+      disabled={disabled}
+      className="inline-flex items-center justify-center rounded-full px-7 py-3 font-semibold text-white bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-md hover:shadow-lg transition disabled:opacity-60"
     >
       {children} <span className="ml-2">→</span>
     </button>
