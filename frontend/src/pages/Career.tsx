@@ -1,24 +1,57 @@
 import { GraduationCap, Briefcase, UploadCloud } from "lucide-react";
 import { useState } from "react";
+import { postForm } from "@/lib/api"; // ✅ eklendi
 
 type FileOrNull = File | null;
 
 export default function CareerPage() {
-  // (İstersen backend entegrasyonu için state’leri kullanırız)
   const [internCv, setInternCv] = useState<FileOrNull>(null);
   const [jobCv, setJobCv] = useState<FileOrNull>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, kind: "intern" | "job") => {
+  // ---------- STAJ BAŞVURUSU ----------
+  const handleInternSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    // TODO: Backend endpointine POST et (ör: /api/career/apply)
-    // fetch("/api/career/apply", { method: "POST", body: form })
+    const formEl = e.currentTarget;
 
-    console.log(`[${kind}] başvuru gönderildi`, Object.fromEntries(form.entries()));
-    alert("Başvurunuz alındı. Teşekkür ederiz!");
-    e.currentTarget.reset();
-    if (kind === "intern") setInternCv(null);
-    else setJobCv(null);
+    // KVKK kontrol
+    const kvkk = (formEl.elements.namedItem("kvkkIntern") as HTMLInputElement | null)?.checked;
+    if (!kvkk) {
+      alert("Lütfen KVKK onay kutusunu işaretleyin.");
+      return;
+    }
+
+    const fd = new FormData(formEl);
+    try {
+      const r = await postForm<{ message: string }>("/api/career/internship", fd);
+      alert(r.message || "Staj başvurunuz alınmıştır.");
+      formEl.reset();
+      setInternCv(null);
+    } catch (err: any) {
+      alert(err.message || "Staj başvurusu gönderilemedi.");
+    }
+  };
+
+  // ---------- İŞ BAŞVURUSU ----------
+  const handleJobSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formEl = e.currentTarget;
+
+    // KVKK kontrol
+    const kvkk = (formEl.elements.namedItem("kvkkJob") as HTMLInputElement | null)?.checked;
+    if (!kvkk) {
+      alert("Lütfen KVKK onay kutusunu işaretleyin.");
+      return;
+    }
+
+    const fd = new FormData(formEl);
+    try {
+      const r = await postForm<{ message: string }>("/api/career/job", fd);
+      alert(r.message || "İş başvurunuz alınmıştır.");
+      formEl.reset();
+      setJobCv(null);
+    } catch (err: any) {
+      alert(err.message || "İş başvurusu gönderilemedi.");
+    }
   };
 
   return (
@@ -49,9 +82,10 @@ export default function CareerPage() {
               Hukuk fakültesi öğrencileri ve yeni mezunlar için dönemsel staj imkânı sunuyoruz.
             </p>
 
-            <form onSubmit={(e) => handleSubmit(e, "intern")} className="space-y-4">
+            {/* name alanlarını backend'e göre güncelledik */}
+            <form onSubmit={handleInternSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Input name="fullName" label="Ad Soyad" required />
+                <Input name="name" label="Ad Soyad" required />
                 <Input name="email" type="email" label="E-posta" required />
                 <Input name="phone" label="Telefon" />
                 <Input name="university" label="Üniversite / Bölüm" />
@@ -67,7 +101,8 @@ export default function CareerPage() {
                 required
               />
 
-              <Textarea name="message" label="Kısa Not (opsiyonel)" placeholder="Kendinizi kısaca tanıtın..." />
+              {/* backend alan adı: note */}
+              <Textarea name="note" label="Kısa Not (opsiyonel)" placeholder="Kendinizi kısaca tanıtın..." />
 
               <Kvkk name="kvkkIntern" />
 
@@ -88,9 +123,9 @@ export default function CareerPage() {
               Avukat, avukat yardımcısı ve idari pozisyonlar için başvurularınızı bekliyoruz.
             </p>
 
-            <form onSubmit={(e) => handleSubmit(e, "job")} className="space-y-4">
+            <form onSubmit={handleJobSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Input name="fullName" label="Ad Soyad" required />
+                <Input name="name" label="Ad Soyad" required />
                 <Input name="email" type="email" label="E-posta" required />
                 <Input name="phone" label="Telefon" />
                 <Input name="position" label="Başvurulan Pozisyon" placeholder="Örn. Avukat / Ofis Asistanı" />
@@ -106,7 +141,8 @@ export default function CareerPage() {
                 required
               />
 
-              <Textarea name="message" label="Ön Yazı (opsiyonel)" placeholder="Motivasyon ve deneyimleriniz..." />
+              {/* backend alan adı: coverLetter */}
+              <Textarea name="coverLetter" label="Ön Yazı (opsiyonel)" placeholder="Motivasyon ve deneyimleriniz..." />
 
               <Kvkk name="kvkkJob" />
 

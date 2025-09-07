@@ -10,6 +10,7 @@ function buildUrl(path: string) {
   return `${API_BASE}${path}`;
 }
 
+/** JSON body ile POST (iletişim formu vs) */
 export async function postJSON<T>(path: string, body: unknown): Promise<T> {
   const res = await fetch(buildUrl(path), {
     method: "POST",
@@ -17,7 +18,32 @@ export async function postJSON<T>(path: string, body: unknown): Promise<T> {
     body: JSON.stringify(body),
   });
 
-  // Yanıtı güvenle ayrıştır
+  const raw = await res.text();
+  let data: any = null;
+  try {
+    data = raw ? JSON.parse(raw) : null;
+  } catch {
+    // JSON değilse text bırak
+  }
+
+  if (!res.ok) {
+    const msg =
+      (data && (data.error || data.message)) ||
+      raw ||
+      `HTTP ${res.status}`;
+    throw new Error(msg);
+  }
+
+  return (data as T) ?? ({} as T);
+}
+
+/** FormData (dosya upload dahil) ile POST (iş/staj başvuruları için) */
+export async function postForm<T>(path: string, form: FormData): Promise<T> {
+  const res = await fetch(buildUrl(path), {
+    method: "POST",
+    body: form, // fetch otomatik Content-Type: multipart/form-data boundary ekler
+  });
+
   const raw = await res.text();
   let data: any = null;
   try {
