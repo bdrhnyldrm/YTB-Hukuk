@@ -11,6 +11,7 @@ import ContactForm from "./features/contact/ContactForm";
 import PaymentPage from "./pages/Payment";
 import AboutPage from "./pages/About";
 import CareerPage from "./pages/Career";
+import TeamPage from "./pages/Team";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/odeme" element={<PaymentPage />} />
             <Route path="/hakkimizda" element={<AboutPage />} />
             <Route path="/kariyer" element={<CareerPage />} />
+            <Route path="/ekibimiz" element={<TeamPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>
