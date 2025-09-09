@@ -17,7 +17,7 @@ const SocialMedia = () => {
             <FaXTwitter />
           </a>
           <a
-            href="https://www.instagram.com/ytbhukuk2025/"
+            href="https://www.instagram.com/ytbhukuk/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-pink-500 hover:text-pink-700 text-6xl transition-colors"

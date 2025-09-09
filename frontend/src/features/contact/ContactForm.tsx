@@ -117,12 +117,13 @@ export default function ContactForm() {
               </label>
 
               <label className="flex flex-col">
-                <span className="mb-1 font-medium">Telefon</span>
+                <span className="mb-1 font-medium">Telefon*</span>
                 <input
                   name="phone"
                   value={form.phone}
                   onChange={onChange}
                   className="rounded-xl border p-3"
+                  required
                 />
               </label>
 

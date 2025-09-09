@@ -36,7 +36,7 @@ public class ContactService {
                 name, email, phone, message.length());
 
         // E-posta konusu ve içeriği
-        final String subject = "YTB Hukuk | Yeni Randevunuz Var";
+        final String subject = "Yeni Randevunuz Var";
         final String body =
                 "Yeni bir iletişim formu gönderildi:\n\n" +
                         "Ad Soyad : " + name + "\n" +

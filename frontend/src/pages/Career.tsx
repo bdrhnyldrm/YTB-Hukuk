@@ -98,8 +98,8 @@ export default function CareerPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input name="name" label="Ad Soyad" required />
                 <Input name="email" type="email" label="E-posta" required />
-                <Input name="phone" label="Telefon" />
-                <Input name="university" label="Üniversite / Bölüm" />
+                <Input name="phone" label="Telefon" required/>
+                <Input name="university" label="Üniversite / Bölüm" required/>
               </div>
 
               <Input name="linkedin" label="LinkedIn (opsiyonel)" placeholder="https://linkedin.com/in/..." />
@@ -147,8 +147,8 @@ export default function CareerPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input name="name" label="Ad Soyad" required />
                 <Input name="email" type="email" label="E-posta" required />
-                <Input name="phone" label="Telefon" />
-                <Input name="position" label="Başvurulan Pozisyon" placeholder="Örn. Avukat / Ofis Asistanı" />
+                <Input name="phone" label="Telefon" required />
+                <Input name="position" label="Başvurulan Pozisyon" placeholder="Örn. Avukat / Ofis Asistanı" required />
               </div>
 
               <Input name="linkedin" label="LinkedIn (opsiyonel)" placeholder="https://linkedin.com/in/..." />
