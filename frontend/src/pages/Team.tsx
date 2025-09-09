@@ -5,12 +5,13 @@ import avukat2 from "@/assets/avukat2.png";
 import yagmur from "@/assets/yagmuratalay.jpg";
 import bedo from "@/assets/bedo.png";
 import salih from "@/assets/salih.jpg";
+import cagatay from "@/assets/cagatay.png";
 
 const lawyers = [
   {
     id: "ali-ihsan",
     name: "Av. Ali İhsan Yıldırım",
-    role: "Kurucu Ortak • Ceza Hukuku",
+    role: "Kurucu Ortak • Ceza Hukuku & Aile Hukuku",
     thumb: avukat1,   // üst kısımda küçük foto
     photo: avukat1,   // detayda büyük foto
     bio: "Ceza hukuku alanında uzman, ağır ceza ve soruşturma süreçlerinde geniş tecrübe..."
@@ -18,7 +19,7 @@ const lawyers = [
   {
     id: "sukru-temel",
     name: "Av. Şükrü Temel",
-    role: "Kurucu Ortak • Ticaret Hukuku",
+    role: "Kurucu Ortak • İş Hukuku & İcra ve İflas Hukuku",
     thumb: avukat2,
     photo: avukat2,
     bio: "Ticaret hukuku, şirket sözleşmeleri ve ticari uyuşmazlıklar odağında çalışır..."
@@ -26,17 +27,17 @@ const lawyers = [
   {
     id: "cagatay-bozoglu",
     name: "Av. Çağatay Kaan Bozoğlu",
-    role: "İcra ve İflas Hukuku",
-    thumb: bedo,
-    photo: bedo,
-    bio: "İcra takipleri, konkordato ve iflas süreçlerinde etkin stratejiler geliştirir..."
+    role: "Kurucu Ortak • Tazminat Hukuku & Sigorta Tahkim",
+    thumb: cagatay,
+    photo: cagatay,
+    bio: "Av. Çağatay Kaan Bozoğlu, tazminat davaları, sigorta tahkim, iş kazaları ve trafik kazaları alanlarında müvekkillerine profesyonel hukuki hizmet sunmaktadır; sigorta şirketleriyle yaşanan uyuşmazlıklarda hızlı ve pratik çözümler geliştirmekte, iş kazaları ve trafik kazaları sonrasında ortaya çıkan maddi ve manevi tazminat taleplerinde müvekkillerini titizlikle temsil etmekte ve her dosyaya özel stratejilerle müvekkillerinin adalet arayışında güvenilir bir yol arkadaşı olmayı amaçlamaktadır."
   },
   {
-      id: "cagatay-bozoglu",
-      name: "Av. Çağatay Kaan Bozoğlu",
-      role: "İcra ve İflas Hukuku",
-      thumb: salih,
-      photo: salih,
+      id: "bedirhan-yildirim",
+      name: "Bedirhan Yıldırım",
+      role: "Siber Güvenlik Uzmanı",
+      thumb: bedo,
+      photo: bedo,
       bio: "İcra takipleri, konkordato ve iflas süreçlerinde etkin stratejiler geliştirir..."
   },
   {
@@ -89,7 +90,7 @@ export default function TeamPage() {
                 <img
                   src={l.photo}
                   alt={l.name}
-                  className="w-full rounded-2xl border bg-white shadow-md"
+                  className="w-[28rem] h-[28rem] object-cover rounded-2xl border bg-white shadow-md"
                 />
               </div>
               {/* Sağda detay */}
