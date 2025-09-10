@@ -1,28 +1,36 @@
-import { Link } from "react-router-dom";
+// frontend/src/pages/Team.tsx
 
-import avukat1 from "@/assets/avukat1.jpg";
-import avukat2 from "@/assets/avukat2.png";
-import yagmur from "@/assets/yagmuratalay.jpg";
-import bedo from "@/assets/bedo.png";
-import salih from "@/assets/salih.jpg";
+import ali from "@/assets/ali.png";
+import sukur from "@/assets/sukur.png";
 import cagatay from "@/assets/cagatay.png";
+import bedo from "@/assets/bedo.png";
+import yagmur from "@/assets/yagmuratalay.jpg";
 
-const lawyers = [
+type Lawyer = {
+  id: string;
+  name: string;
+  role: string;
+  thumb: string;
+  photo: string;
+  bio: string;
+};
+
+const lawyers: Lawyer[] = [
   {
     id: "ali-ihsan",
     name: "Av. Ali İhsan Yıldırım",
     role: "Kurucu Ortak • Ceza Hukuku & Aile Hukuku",
-    thumb: avukat1,   // üst kısımda küçük foto
-    photo: avukat1,   // detayda büyük foto
-    bio: "Ceza hukuku alanında uzman, ağır ceza ve soruşturma süreçlerinde geniş tecrübe..."
+    thumb: ali,
+    photo: ali,
+    bio: "Av. Ali İhsan Yıldırım, kurucu ortak olarak özellikle ceza hukuku ve aile hukuku alanlarında müvekkillerine kapsamlı hukuki destek sunmaktadır; ceza yargılamalarında etkin savunma stratejileri geliştirmekte, aile hukukuna ilişkin boşanma, velayet, nafaka ve mal paylaşımı gibi uyuşmazlıklarda müvekkillerini titizlikle temsil etmekte ve her dosyada adil, hızlı ve etkili çözümler üreterek müvekkillerinin haklarını en güçlü şekilde korumayı amaçlamaktadır."
   },
   {
-    id: "sukru-temel",
-    name: "Av. Şükrü Temel",
+    id: "sukur-temel",
+    name: "Av. Şükür Temel",
     role: "Kurucu Ortak • İş Hukuku & İcra ve İflas Hukuku",
-    thumb: avukat2,
-    photo: avukat2,
-    bio: "Ticaret hukuku, şirket sözleşmeleri ve ticari uyuşmazlıklar odağında çalışır..."
+    thumb: sukur,
+    photo: sukur,
+    bio: "Av. Şükrü Temel, kurucu ortak olarak özellikle iş hukuku ve icra ve iflas hukuku alanlarında müvekkillerine etkin hukuki hizmet sunmaktadır; işçi-işveren uyuşmazlıklarında hak kayıplarını önleyecek stratejiler geliştirmekte, icra takipleri ile iflas ve konkordato süreçlerinde müvekkillerini titizlikle temsil etmekte ve her dosyada adil, hızlı ve sonuç odaklı çözümler üreterek müvekkillerinin menfaatlerini en güçlü şekilde korumayı amaçlamaktadır."
   },
   {
     id: "cagatay-bozoglu",
@@ -33,22 +41,21 @@ const lawyers = [
     bio: "Av. Çağatay Kaan Bozoğlu, tazminat davaları, sigorta tahkim, iş kazaları ve trafik kazaları alanlarında müvekkillerine profesyonel hukuki hizmet sunmaktadır; sigorta şirketleriyle yaşanan uyuşmazlıklarda hızlı ve pratik çözümler geliştirmekte, iş kazaları ve trafik kazaları sonrasında ortaya çıkan maddi ve manevi tazminat taleplerinde müvekkillerini titizlikle temsil etmekte ve her dosyaya özel stratejilerle müvekkillerinin adalet arayışında güvenilir bir yol arkadaşı olmayı amaçlamaktadır."
   },
   {
-      id: "bedirhan-yildirim",
-      name: "Bedirhan Yıldırım",
-      role: "Siber Güvenlik Uzmanı",
-      thumb: bedo,
-      photo: bedo,
-      bio: "İcra takipleri, konkordato ve iflas süreçlerinde etkin stratejiler geliştirir..."
+    id: "bedirhan-yildirim",
+    name: "Bedirhan Yıldırım",
+    role: "Adli Bilişim ve Siber Güvenlik Danışmanı",
+    thumb: bedo,
+    photo: bedo,
+    bio: "Bedirhan Yıldırım, bilgisayar mühendisliği altyapısıyla hukuk bürosuna teknoloji odaklı danışmanlık vermektedir. Özellikle siber güvenlik, kişisel verilerin korunması (KVKK & GDPR), dijital delillerin incelenmesi, veri kurtarma ve sistem analizleri konularında uzmanlık sunmakta; bu alanlarda avukatlara ve müvekkillere teknik rehberlik sağlamaktadır. Adli bilişim alanındaki çalışmalarıyla bilgisayar, mobil cihaz ve ağ sistemlerinden elde edilen verilerin güvenli şekilde toplanması, analizi ve raporlanması süreçlerinde danışmanlık yapmaktadır. Ayrıca, teknoloji kaynaklı uyuşmazlıklarda hukuki süreçlerin teknik boyutunu açıklığa kavuşturarak avukatlara destek olmakta ve müvekkillere en doğru çözüm yollarının belirlenmesinde katkıda bulunmaktadır."
   },
   {
-        id: "cagatay-bozoglu",
-        name: "Av. Çağatay Kaan Bozoğlu",
-        role: "İcra ve İflas Hukuku",
-        thumb: yagmur,
-        photo: yagmur,
-        bio: "İcra takipleri, konkordato ve iflas süreçlerinde etkin stratejiler geliştirir..."
+    id: "yagmur-atalay",
+    name: "Av. Yağmur Atalay",
+    role: "İcra ve İflas Hukuku",
+    thumb: yagmur,
+    photo: yagmur,
+    bio: "İcra takipleri, konkordato ve iflas süreçlerinde etkin stratejiler geliştirir..."
   },
-  // diğer avukatlar...
 ];
 
 export default function TeamPage() {
@@ -80,24 +87,25 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Detaylı bilgiler */}
+      {/* Detaylı bilgiler: fotoğraflar SOLDa, metin SAĞda */}
       <section className="container mx-auto px-6 md:px-8 pb-20 space-y-16">
-        {lawyers.map((l, idx) => (
+        {lawyers.map((l) => (
           <div key={l.id} id={l.id} className="scroll-mt-28">
             <div className="grid md:grid-cols-2 gap-10 items-center">
-              {/* Solda büyük foto */}
-              <div className={`${idx % 2 === 1 ? "md:order-2" : ""}`}>
+              {/* Solda kare fotoğraf (tümünde aynı boyut) */}
+              <div>
                 <img
                   src={l.photo}
                   alt={l.name}
                   className="w-[28rem] h-[28rem] object-cover rounded-2xl border bg-white shadow-md"
                 />
               </div>
+
               {/* Sağda detay */}
-              <div className={`${idx % 2 === 1 ? "md:order-1" : ""}`}>
+              <div>
                 <h2 className="text-2xl md:text-3xl font-semibold">{l.name}</h2>
                 <p className="text-accent font-medium mt-1">{l.role}</p>
-                <p className="mt-5 text-gray-700 leading-relaxed">{l.bio}</p>
+                <p className="mt-5 text-gray-700 leading-relaxed text-justify">{l.bio}</p>
               </div>
             </div>
           </div>

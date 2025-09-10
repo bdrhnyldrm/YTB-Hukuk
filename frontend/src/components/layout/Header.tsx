@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Scale } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.jpg";
 
 const navigation = [
   { name: "Anasayfa", href: "/" },
@@ -31,9 +32,11 @@ export function Header() {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 gradient-gold rounded-lg flex items-center justify-center">
-              <Scale className="w-6 h-6 text-white" />
-            </div>
+            <img
+              src={logo}
+              alt="YTB Hukuk"
+              className="w-12 h-12 object-contain rounded-full"
+            />
             <span className="text-2xl font-bold text-primary">YTB HUKUK</span>
           </Link>
 
