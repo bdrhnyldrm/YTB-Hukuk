@@ -22,7 +22,7 @@ const areas: Area[] = [
     id: "ceza-hukuku",
     title: "Ceza Hukuku",
     description:
-      "Savunma stratejileri, soruşturma süreçleri, dava takibi ve infaz hukuku alanlarında uzman kadromuz ile müvekkillerimize güçlü bir savunma sağlamaktayız. Ceza yargılamalarında hakların korunması için titizlikle çalışıyoruz.",
+    "Ceza davaları, soruşturma ve kovuşturma süreçleri ile tutuklama ve itiraz konularında etkin çözümler sunuyoruz. Ceza yargılamalarında hakların korunması ve adil yargılanma ilkesi çerçevesinde profesyonel destek sağlıyoruz.",
     image: ceza,
   },
   {
@@ -50,35 +50,35 @@ const areas: Area[] = [
      id: "icra-iflas",
      title: "İcra ve İflas",
      description:
-        "Şirket kuruluşu, sözleşmeler, ortaklık anlaşmazlıkları ve ticari davalar alanlarında uzman kadromuzla müvekkillerimize kapsamlı hukuki destek sunuyoruz. Ticari ilişkilerde hukuki riskleri minimize etmeyi hedefliyoruz.",
+        "İcra takibi, iflas ve konkordato süreçlerinde müvekkillerimize etkin hukuki destek sağlıyoruz. Alacak tahsilatı ve borç yapılandırma konularında profesyonel çözümler sunuyoruz.",
      image: icra, // geçici görsel
   },
   {
        id: "idari-hukuk",
        title: "İdari Hukuk",
        description:
-          "Şirket kuruluşu, sözleşmeler, ortaklık anlaşmazlıkları ve ticari davalar alanlarında uzman kadromuzla müvekkillerimize kapsamlı hukuki destek sunuyoruz. Ticari ilişkilerde hukuki riskleri minimize etmeyi hedefliyoruz.",
+          "İptal davaları, idari işlemler ve kamu hukuku alanlarında müvekkillerimize kapsamlı hukuki destek sunuyoruz. İdari yargılamalarda hakların korunması ve adil çözümler üretmeyi amaçlıyoruz.",
        image: idari, // geçici görsel
     },
 {
        id: "tazminat-hukuku",
        title: "Tazminat Hukuku",
        description:
-          "Şirket kuruluşu, sözleşmeler, ortaklık anlaşmazlıkları ve ticari davalar alanlarında uzman kadromuzla müvekkillerimize kapsamlı hukuki destek sunuyoruz. Ticari ilişkilerde hukuki riskleri minimize etmeyi hedefliyoruz.",
+          "Trafik kazaları, iş kazaları ve sigorta tahkim konularında müvekkillerimizin maddi ve manevi tazminat taleplerini en güçlü şekilde savunuyoruz. Tazminat davalarında adil ve hızlı çözümler sunmayı hedefliyoruz.",
        image: tazminat, // geçici görsel
     },
 {
        id: "kira-hukuku",
        title: "Kira Hukuku",
        description:
-          "Şirket kuruluşu, sözleşmeler, ortaklık anlaşmazlıkları ve ticari davalar alanlarında uzman kadromuzla müvekkillerimize kapsamlı hukuki destek sunuyoruz. Ticari ilişkilerde hukuki riskleri minimize etmeyi hedefliyoruz.",
+          "Kira sözleşmeleri, tahliye davaları ve kira uyuşmazlıkları alanlarında müvekkillerimize etkin hukuki destek sağlıyoruz. Kira ilişkilerinde hakların korunması ve adil çözümler üretmeyi amaçlıyoruz.",
        image: kira, // geçici görsel
     },
 {
        id: "emlak-hukuku",
        title: "Kat Mülkiyeti ve Emlak Hukuku",
        description:
-          "Şirket kuruluşu, sözleşmeler, ortaklık anlaşmazlıkları ve ticari davalar alanlarında uzman kadromuzla müvekkillerimize kapsamlı hukuki destek sunuyoruz. Ticari ilişkilerde hukuki riskleri minimize etmeyi hedefliyoruz.",
+          "Tapu işlemleri, gayrimenkul alım-satım, ipotek ve emlak davalarında müvekkillerimize kapsamlı hukuki destek sunuyoruz. Emlak hukuku süreçlerinde hakların korunması ve adil çözümler üretmeyi hedefliyoruz.",
        image: emlak, // geçici görsel
     },
   // buraya diğer alanları da aynı formatta ekle (ticaret, icra, idari, tazminat, kira, emlak...)
