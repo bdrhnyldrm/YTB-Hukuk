@@ -15,9 +15,9 @@ public class WebConfig implements WebMvcConfigurer {
                         "http://localhost:8081",      // ← EKLENDİ
                         "http://127.0.0.1:8081"       // ← EKLENDİ
                 )
-                .allowedMethods("GET", "POST", "OPTIONS")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
-                .allowCredentials(false);
+                .allowCredentials(true);
     }
 }
 

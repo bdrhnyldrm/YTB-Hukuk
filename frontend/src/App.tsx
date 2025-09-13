@@ -14,6 +14,10 @@ import CareerPage from "./pages/Career";
 import TeamPage from "./pages/Team";
 import PracticeAreas from "./pages/PracticeAreas";
 import ScrollToHashElement from "./components/common/ScrollToHashElement";
+import ArticlesPage from "./pages/Articles";
+import ArticleDetail from "./pages/ArticleDetail";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminArticles from "./pages/admin/AdminArticles";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +37,10 @@ const App = () => (
             <Route path="/kariyer" element={<CareerPage />} />
             <Route path="/ekibimiz" element={<TeamPage />} />
             <Route path="/dava-alanlari" element={<PracticeAreas />} />
+            <Route path="/makaleler" element={<ArticlesPage />} />
+            <Route path="/makaleler/:slug" element={<ArticleDetail />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/articles" element={<AdminArticles />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>
