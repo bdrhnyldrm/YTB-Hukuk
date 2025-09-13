@@ -1,20 +1,30 @@
+// src/lib/api.ts
+
 // API_BASE: .env'de VITE_API_URL tanımlıysa onu kullan, yoksa boş bırak.
 // Geliştirmede Vite proxy ile /api istekleri backend'e yönlenir.
-// src/lib/api.ts
 const env = (import.meta as any).env || {};
 const API_BASE = env.VITE_API_URL ?? env.VITE_API_BASE_URL ?? "";
 
-
 // ---- AUTH Yönetimi ----
-let basicAuth: string | null = localStorage.getItem("ytb_auth") || null;
+// localStorage’da ytb_auth altında {token, expire} şeklinde tutulur
+let authObj: { token: string; expire: number } | null = null;
+
+try {
+  const raw = localStorage.getItem("ytb_auth");
+  if (raw) authObj = JSON.parse(raw);
+} catch {
+  authObj = null;
+}
 
 export function setBasicAuth(username: string, password: string) {
-  basicAuth = btoa(`${username}:${password}`);
-  localStorage.setItem("ytb_auth", basicAuth);
+  const token = btoa(`${username}:${password}`);
+  const expire = Date.now() + 10_000; // 10 saniye
+  authObj = { token, expire };
+  localStorage.setItem("ytb_auth", JSON.stringify(authObj));
 }
 
 export function clearAuth() {
-  basicAuth = null;
+  authObj = null;
   localStorage.removeItem("ytb_auth");
 }
 
@@ -25,7 +35,14 @@ function buildUrl(path: string) {
 
 function authHeaders(extra?: HeadersInit) {
   const h: HeadersInit = { ...(extra || {}) };
-  if (basicAuth) h["Authorization"] = `Basic ${basicAuth}`;
+  if (authObj) {
+    if (Date.now() > authObj.expire) {
+      // Süresi doldu → temizle
+      clearAuth();
+    } else {
+      h["Authorization"] = `Basic ${authObj.token}`;
+    }
+  }
   return h;
 }
 

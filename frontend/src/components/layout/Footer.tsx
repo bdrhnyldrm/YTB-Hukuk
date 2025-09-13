@@ -115,9 +115,7 @@ export function Footer() {
                   >
                     ytbhukuk@gmail.com
                   </a>
-
                 </div>
-
               </div>
             </div>
           </div>
@@ -127,7 +125,13 @@ export function Footer() {
         <div className="border-t border-primary-foreground/20 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-primary-foreground/60">
             <p>© YTB Hukuk. Tüm hakları saklıdır.</p>
-
+            {/* Yönetici Girişi linki */}
+            <Link
+              to="/admin/login"
+              className="text-xs text-primary-foreground/50 hover:text-accent transition-colors duration-200"
+            >
+              Yönetici Girişi
+            </Link>
           </div>
         </div>
       </div>
