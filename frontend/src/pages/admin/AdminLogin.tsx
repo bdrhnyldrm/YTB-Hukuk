@@ -8,32 +8,36 @@ export default function AdminLogin() {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-      // sayfa açıldığında mevcut auth'u kontrol et
-      const raw = localStorage.getItem("ytb_auth");
-      if (raw) {
-        try {
-          const { token, expire } = JSON.parse(raw);
-          if (Date.now() < expire && token) {
-            // hâlâ süresi dolmadı → direkt admin sayfasına yönlendir
-            location.href = "/admin/articles";
+    // sayfa açıldığında mevcut auth'u kontrol et
+    const raw = localStorage.getItem("ytb_auth");
+    if (raw) {
+      try {
+        const { token, expire } = JSON.parse(raw);
+        if (token) {
+          if (!expire || Date.now() < expire) {
+            // expire yoksa (normal login) veya süresi dolmamışsa
+            window.location.href = "/admin/articles";
           } else {
-            clearAuth(); // süresi geçtiyse temizle
+            // süresi geçmiş → tamamen temizle
+            clearAuth(true);
           }
-        } catch {
-          clearAuth();
         }
+      } catch {
+        clearAuth(true);
       }
-    }, []);
+    }
+  }, []);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErr(null);
     setBusy(true);
     try {
+      // Normal login → expire olmadan kaydet
       setBasicAuth(u, p);
-      location.href = "/admin/articles";
+      window.location.href = "/admin/articles";
     } catch (e: any) {
-      clearAuth();
+      clearAuth(true);
       setErr(e?.message || "Giriş başarısız");
     } finally {
       setBusy(false);

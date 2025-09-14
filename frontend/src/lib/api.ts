@@ -1,13 +1,12 @@
-// src/lib/api.ts
-
-// API_BASE: .env'de VITE_API_URL tanımlıysa onu kullan, yoksa boş bırak.
-// Geliştirmede Vite proxy ile /api istekleri backend'e yönlenir.
 const env = (import.meta as any).env || {};
 const API_BASE = env.VITE_API_URL ?? env.VITE_API_BASE_URL ?? "";
 
-// ---- AUTH Yönetimi ----
-// localStorage’da ytb_auth altında {token, expire} şeklinde tutulur
-let authObj: { token: string; expire: number } | null = null;
+interface AuthData {
+  token: string;
+  expire?: number; // sadece sayfa kapanışında set edilir
+}
+
+let authObj: AuthData | null = null;
 
 try {
   const raw = localStorage.getItem("ytb_auth");
@@ -16,16 +15,23 @@ try {
   authObj = null;
 }
 
+// Login → sadece token sakla (expire yok)
 export function setBasicAuth(username: string, password: string) {
   const token = btoa(`${username}:${password}`);
-  const expire = Date.now() + 10_000; // 10 saniye
-  authObj = { token, expire };
+  authObj = { token };
   localStorage.setItem("ytb_auth", JSON.stringify(authObj));
 }
 
-export function clearAuth() {
-  authObj = null;
-  localStorage.removeItem("ytb_auth");
+// clearAuth(full=true) → tamamen temizle
+// clearAuth(full=false) → 10 saniyelik geçerlilik bırak
+export function clearAuth(full = true) {
+  if (full) {
+    authObj = null;
+    localStorage.removeItem("ytb_auth");
+  } else if (authObj?.token) {
+    authObj = { token: authObj.token, expire: Date.now() + 10_000 };
+    localStorage.setItem("ytb_auth", JSON.stringify(authObj));
+  }
 }
 
 function buildUrl(path: string) {
@@ -36,9 +42,10 @@ function buildUrl(path: string) {
 function authHeaders(extra?: HeadersInit) {
   const h: HeadersInit = { ...(extra || {}) };
   if (authObj) {
-    if (Date.now() > authObj.expire) {
-      // Süresi doldu → temizle
-      clearAuth();
+    if (authObj.expire && Date.now() > authObj.expire) {
+      // süresi doldu → tamamen sil
+      authObj = null;
+      localStorage.removeItem("ytb_auth");
     } else {
       h["Authorization"] = `Basic ${authObj.token}`;
     }
@@ -46,15 +53,22 @@ function authHeaders(extra?: HeadersInit) {
   return h;
 }
 
-// ---- JSON Helpers ----
+// -------------------------------
+// 📌 JSON Helpers
+// -------------------------------
 export async function getJSON<T>(path: string): Promise<T> {
   const res = await fetch(buildUrl(path), {
     headers: authHeaders({ "Content-Type": "application/json" }),
   });
   const raw = await res.text();
   let data: any = null;
-  try { data = raw ? JSON.parse(raw) : null; } catch {}
-  if (!res.ok) throw new Error((data && (data.error || data.message)) || raw || `HTTP ${res.status}`);
+  try {
+    data = raw ? JSON.parse(raw) : null;
+  } catch {}
+  if (!res.ok)
+    throw new Error(
+      (data && (data.error || data.message)) || raw || `HTTP ${res.status}`
+    );
   return (data as T) ?? ({} as T);
 }
 
@@ -66,8 +80,13 @@ export async function postJSON<T>(path: string, body: unknown): Promise<T> {
   });
   const raw = await res.text();
   let data: any = null;
-  try { data = raw ? JSON.parse(raw) : null; } catch {}
-  if (!res.ok) throw new Error((data && (data.error || data.message)) || raw || `HTTP ${res.status}`);
+  try {
+    data = raw ? JSON.parse(raw) : null;
+  } catch {}
+  if (!res.ok)
+    throw new Error(
+      (data && (data.error || data.message)) || raw || `HTTP ${res.status}`
+    );
   return (data as T) ?? ({} as T);
 }
 
@@ -79,8 +98,13 @@ export async function putJSON<T>(path: string, body: unknown): Promise<T> {
   });
   const raw = await res.text();
   let data: any = null;
-  try { data = raw ? JSON.parse(raw) : null; } catch {}
-  if (!res.ok) throw new Error((data && (data.error || data.message)) || raw || `HTTP ${res.status}`);
+  try {
+    data = raw ? JSON.parse(raw) : null;
+  } catch {}
+  if (!res.ok)
+    throw new Error(
+      (data && (data.error || data.message)) || raw || `HTTP ${res.status}`
+    );
   return (data as T) ?? ({} as T);
 }
 
@@ -95,16 +119,23 @@ export async function del(path: string): Promise<void> {
   }
 }
 
-// ---- FormData (kariyer/başvuru dosyaları için) ----
+// -------------------------------
+// 📌 FormData Helpers
+// -------------------------------
 export async function postForm<T>(path: string, form: FormData): Promise<T> {
   const res = await fetch(buildUrl(path), {
     method: "POST",
     headers: authHeaders(),
-    body: form, // fetch otomatik Content-Type: multipart/form-data boundary ekler
+    body: form,
   });
   const raw = await res.text();
   let data: any = null;
-  try { data = raw ? JSON.parse(raw) : null; } catch {}
-  if (!res.ok) throw new Error((data && (data.error || data.message)) || raw || `HTTP ${res.status}`);
+  try {
+    data = raw ? JSON.parse(raw) : null;
+  } catch {}
+  if (!res.ok)
+    throw new Error(
+      (data && (data.error || data.message)) || raw || `HTTP ${res.status}`
+    );
   return (data as T) ?? ({} as T);
 }
