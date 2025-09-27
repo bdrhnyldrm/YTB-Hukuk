@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class ArticleDetail extends ArticleSummary {
     private String content;
+    private String coverUrl;
 }

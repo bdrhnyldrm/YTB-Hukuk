@@ -11,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-
 @Configuration
 public class SecurityConfig {
 
@@ -26,7 +25,8 @@ public class SecurityConfig {
                                 "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html",
                                 "/api/articles/**",    // makale listesi & detay herkese açık
                                 "/api/contact/**",     // iletişim formu
-                                "/api/career/**"       // kariyer formu
+                                "/api/career/**",      // kariyer formu
+                                "/files/**"            // ✅ kapak fotoğrafları herkese açık
                         ).permitAll()
                         .requestMatchers("/api/admin/**").hasRole(Role.LAWYER.name()) // sadece LAWYER
                         .anyRequest().authenticated()

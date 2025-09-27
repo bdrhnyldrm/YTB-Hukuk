@@ -45,4 +45,7 @@ public class Article {
 
     @UpdateTimestamp
     private Instant updatedAt;
+
+    @Column(length = 512)
+    private String coverUrl; // public URL (örn: /files/articles/{id}/cover-xxxx.jpg)
 }

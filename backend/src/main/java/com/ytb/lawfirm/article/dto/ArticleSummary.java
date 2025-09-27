@@ -15,4 +15,5 @@ public class ArticleSummary {
     private Set<PracticeArea> areas;
     private Instant createdAt;
     private Boolean published;
+    private String coverUrl;
 }

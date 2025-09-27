@@ -125,7 +125,25 @@ export async function del(path: string): Promise<void> {
 export async function postForm<T>(path: string, form: FormData): Promise<T> {
   const res = await fetch(buildUrl(path), {
     method: "POST",
-    headers: authHeaders(),
+    headers: authHeaders(), // ❌ Content-Type ekleme
+    body: form,
+  });
+  const raw = await res.text();
+  let data: any = null;
+  try {
+    data = raw ? JSON.parse(raw) : null;
+  } catch {}
+  if (!res.ok)
+    throw new Error(
+      (data && (data.error || data.message)) || raw || `HTTP ${res.status}`
+    );
+  return (data as T) ?? ({} as T);
+}
+
+export async function putForm<T>(path: string, form: FormData): Promise<T> {
+  const res = await fetch(buildUrl(path), {
+    method: "PUT",
+    headers: authHeaders(), // ❌ Content-Type ekleme
     body: form,
   });
   const raw = await res.text();

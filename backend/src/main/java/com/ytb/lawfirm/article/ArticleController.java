@@ -42,6 +42,7 @@ public class ArticleController {
         s.setAreas(a.getAreas());
         s.setCreatedAt(a.getCreatedAt());
         s.setPublished(a.isPublished());
+        s.setCoverUrl(a.getCoverUrl()); // ✅ Kapak fotoğrafı eklendi
         return s;
     }
 
@@ -56,6 +57,7 @@ public class ArticleController {
         d.setCreatedAt(a.getCreatedAt());
         d.setPublished(a.isPublished());
         d.setContent(a.getContent());
+        d.setCoverUrl(a.getCoverUrl()); // ✅ Kapak fotoğrafı eklendi
         return d;
     }
 }

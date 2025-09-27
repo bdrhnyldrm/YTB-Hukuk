@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
 
 @RestController
 @RequestMapping("/api/admin/articles")
@@ -39,14 +40,14 @@ public class AdminArticleController {
         return toDetail(a);
     }
 
-    @PostMapping
-    public Long create(Authentication auth, @RequestBody ArticleCreateUpdate in) {
-        return service.create(auth.getName(), in).getId();
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Long create(Authentication auth, @ModelAttribute ArticleCreateUpdate in) {
+        return service.create(auth.getName(), in, in.getCover()).getId();
     }
 
-    @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody ArticleCreateUpdate in) {
-        service.update(id, in);
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void update(@PathVariable Long id, @ModelAttribute ArticleCreateUpdate in) {
+        service.update(id, in, in.getCover());
     }
 
     @DeleteMapping("/{id}")
@@ -64,6 +65,7 @@ public class AdminArticleController {
         s.setAreas(a.getAreas());
         s.setCreatedAt(a.getCreatedAt());
         s.setPublished(a.isPublished());
+        s.setCoverUrl(a.getCoverUrl()); // ✅ Kapak fotoğrafı eklendi
         return s;
     }
 
@@ -73,11 +75,12 @@ public class AdminArticleController {
         d.setTitle(a.getTitle());
         d.setSlug(a.getSlug());
         d.setSummary(a.getSummary());
-        d.setContent(a.getContent()); // ← içerik artık burada dönüyor
+        d.setContent(a.getContent());
         d.setAuthorName(a.getAuthor().getFullName());
         d.setAreas(a.getAreas());
         d.setCreatedAt(a.getCreatedAt());
         d.setPublished(a.isPublished());
+        d.setCoverUrl(a.getCoverUrl()); // ✅ Kapak fotoğrafı eklendi
         return d;
     }
 }
