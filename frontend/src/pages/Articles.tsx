@@ -74,7 +74,7 @@ export default function ArticlesPage() {
               <img
                 src={`${API_BASE}${it.coverUrl}`} // ✅ backend domaini ile birleştirildi
                 alt={it.title}
-                className="w-full md:w-40 md:h-28 object-cover rounded-lg mb-3 md:mb-0 flex-shrink-0"
+                className="w-full md:w-48 md:h-32 object-cover rounded-lg mb-3 md:mb-0 flex-shrink-0"
                 loading="lazy"
               />
             ) : (
