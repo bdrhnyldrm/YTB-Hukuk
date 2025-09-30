@@ -17,10 +17,12 @@ export default function ArticleForm({
   editing,
   initial,
   onSaved,
+  onCancel, // ✅ yeni prop
 }: {
   editing?: boolean;
   initial?: any;
   onSaved: () => void;
+  onCancel?: () => void; // ✅ iptal için opsiyonel callback
 }) {
   const emptyForm = {
     title: "",
@@ -154,9 +156,22 @@ export default function ArticleForm({
         />
         <span>Yayımla</span>
       </label>
-      <button className="btn-hero">
-        {editing ? "Güncelle" : "Yayınla"}
-      </button>
+
+      {/* ✅ Güncelle ve İptal Et yan yana */}
+      <div className="flex gap-3">
+        <button type="submit" className="btn-hero">
+          {editing ? "Güncelle" : "Yayınla"}
+        </button>
+        {onCancel && (
+          <button
+            type="button"
+            onClick={onCancel}
+            className="btn-outline-gold"
+          >
+            İptal Et
+          </button>
+        )}
+      </div>
     </form>
   );
 }

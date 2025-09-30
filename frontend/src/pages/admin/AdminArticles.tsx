@@ -112,6 +112,7 @@ export default function AdminArticles() {
               setShowCreate(false);
               load();
             }}
+            onCancel={() => setShowCreate(false)} // ✅ yeni makaleyi iptal et
           />
         </div>
       )}
@@ -126,6 +127,7 @@ export default function AdminArticles() {
               setEditing(null);
               load();
             }}
+            onCancel={() => setEditing(null)} // ✅ düzenlemeyi iptal et
           />
         </div>
       )}
