@@ -1,5 +1,13 @@
-import { useState, useEffect } from "react";
-import { postForm, putForm } from "@/lib/api"; // JSON yerine form-data göndermek için
+import { useState, useEffect, useRef, useMemo } from "react";
+import { postForm, putForm } from "@/lib/api";
+
+// ✅ Quill ve eklenti (v1 uyumlu)
+import ReactQuill, { Quill } from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
+// ✅ Yeni image resize paketi
+import ImageResize from "quill-image-resize-module-react";
+Quill.register("modules/imageResize", ImageResize);
 
 export const PRACTICE_AREAS = [
   { key: "CEZA_HUKUKU", label: "Ceza Hukuku" },
@@ -17,19 +25,19 @@ export default function ArticleForm({
   editing,
   initial,
   onSaved,
-  onCancel, // ✅ yeni prop
+  onCancel,
 }: {
   editing?: boolean;
   initial?: any;
   onSaved: () => void;
-  onCancel?: () => void; // ✅ iptal için opsiyonel callback
+  onCancel?: () => void;
 }) {
   const emptyForm = {
     title: "",
     slug: "",
     summary: "",
     content: "",
-    areas: [],
+    areas: [] as string[],
     published: true,
   };
 
@@ -37,7 +45,8 @@ export default function ArticleForm({
   const [cover, setCover] = useState<File | null>(null);
   const [coverPreview, setCoverPreview] = useState<string>("");
 
-  // 🔑 initial değişince formu güncelle
+  const quillRef = useRef<any>(null);
+
   useEffect(() => {
     if (initial) {
       setForm(initial);
@@ -58,6 +67,58 @@ export default function ArticleForm({
     }));
   };
 
+  // 🖼️ Toolbar'daki image butonuna özel handler:
+  const handleImageUpload = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (!file) return;
+
+      const fd = new FormData();
+      fd.append("file", file);
+
+      try {
+        const res = await postForm<{ url: string }>("/api/admin/uploads", fd);
+
+        const quill = quillRef.current?.getEditor();
+        if (!quill) return;
+
+        const range = quill.getSelection(true);
+        quill.insertEmbed(range ? range.index : 0, "image", res.url, "user");
+        if (range) quill.setSelection(range.index + 1);
+      } catch (e) {
+        alert("Görsel yüklenemedi.");
+      }
+    };
+    input.click();
+  };
+
+  // Quill modülleri (toolbar + imageResize)
+  const quillModules = useMemo(
+    () => ({
+      toolbar: {
+        container: [
+          [{ header: [1, 2, 3, false] }],
+          ["bold", "italic", "underline", "strike"],
+          [{ list: "ordered" }, { list: "bullet" }],
+          [{ align: [] }],
+          ["link", "image", "blockquote", "code-block"],
+          ["clean"],
+        ],
+        handlers: {
+          image: handleImageUpload,
+        },
+      },
+      imageResize: {
+        // resize özelliği aktif
+        parchment: Quill.import("parchment"),
+      },
+    }),
+    []
+  );
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -77,11 +138,7 @@ export default function ArticleForm({
   };
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="space-y-4"
-      encType="multipart/form-data"
-    >
+    <form onSubmit={onSubmit} className="space-y-4" encType="multipart/form-data">
       <input
         className="border rounded-md w-full p-3"
         placeholder="Başlık"
@@ -100,12 +157,18 @@ export default function ArticleForm({
         value={form.summary || ""}
         onChange={(e) => setForm({ ...form, summary: e.target.value })}
       />
-      <textarea
-        className="border rounded-md w-full p-3 min-h-[200px]"
-        placeholder="İçerik"
-        value={form.content}
-        onChange={(e) => setForm({ ...form, content: e.target.value })}
-      />
+
+      {/* 🔽 İçerik: ReactQuill */}
+      <div className="rounded-md border">
+        <ReactQuill
+          ref={quillRef}
+          theme="snow"
+          value={form.content}
+          onChange={(html) => setForm({ ...form, content: html })}
+          modules={quillModules}
+          placeholder="Makale içeriğini yazın…"
+        />
+      </div>
 
       {/* Kapak Fotoğrafı */}
       <div className="space-y-2">
@@ -132,10 +195,7 @@ export default function ArticleForm({
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
         {PRACTICE_AREAS.map((a) => (
-          <label
-            key={a.key}
-            className="flex items-center gap-2 border rounded-md p-2"
-          >
+          <label key={a.key} className="flex items-center gap-2 border rounded-md p-2">
             <input
               type="checkbox"
               checked={form.areas.includes(a.key)}
@@ -150,24 +210,17 @@ export default function ArticleForm({
         <input
           type="checkbox"
           checked={form.published}
-          onChange={(e) =>
-            setForm({ ...form, published: e.target.checked })
-          }
+          onChange={(e) => setForm({ ...form, published: e.target.checked })}
         />
         <span>Yayımla</span>
       </label>
 
-      {/* ✅ Güncelle ve İptal Et yan yana */}
       <div className="flex gap-3">
-        <button type="submit" className="btn-hero">
+        <button className="btn-hero" type="submit">
           {editing ? "Güncelle" : "Yayınla"}
         </button>
         {onCancel && (
-          <button
-            type="button"
-            onClick={onCancel}
-            className="btn-outline-gold"
-          >
+          <button type="button" onClick={onCancel} className="btn-outline-gold">
             İptal Et
           </button>
         )}
