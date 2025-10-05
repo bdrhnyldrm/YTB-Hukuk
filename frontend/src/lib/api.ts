@@ -43,10 +43,12 @@ function authHeaders(extra?: HeadersInit) {
   const h: HeadersInit = { ...(extra || {}) };
   if (authObj) {
     if (authObj.expire && Date.now() > authObj.expire) {
-      // süresi doldu → tamamen sil
-      authObj = null;
-      localStorage.removeItem("ytb_auth");
-    } else {
+      // Token süresi doldu ama login session'ı tamamen bitirme
+      // sadece expire flag'ini kaldır
+      delete authObj.expire;
+      localStorage.setItem("ytb_auth", JSON.stringify(authObj));
+    }else {
+      // ✅ Basic Auth formatı
       h["Authorization"] = `Basic ${authObj.token}`;
     }
   }
@@ -125,7 +127,7 @@ export async function del(path: string): Promise<void> {
 export async function postForm<T>(path: string, form: FormData): Promise<T> {
   const res = await fetch(buildUrl(path), {
     method: "POST",
-    headers: authHeaders(), // ❌ Content-Type ekleme
+    headers: authHeaders(), // ✅ Basic Auth header otomatik ekleniyor
     body: form,
   });
   const raw = await res.text();
@@ -143,7 +145,7 @@ export async function postForm<T>(path: string, form: FormData): Promise<T> {
 export async function putForm<T>(path: string, form: FormData): Promise<T> {
   const res = await fetch(buildUrl(path), {
     method: "PUT",
-    headers: authHeaders(), // ❌ Content-Type ekleme
+    headers: authHeaders(), // ✅ Basic Auth header otomatik ekleniyor
     body: form,
   });
   const raw = await res.text();

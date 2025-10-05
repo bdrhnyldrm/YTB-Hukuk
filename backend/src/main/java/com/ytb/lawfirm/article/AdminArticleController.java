@@ -10,6 +10,18 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Map;
+import java.util.UUID;
+
+import jakarta.servlet.ServletContext;
+import org.springframework.beans.factory.annotation.Value;
 
 @RestController
 @RequestMapping("/api/admin/articles")
@@ -17,6 +29,10 @@ import org.springframework.http.MediaType;
 public class AdminArticleController {
 
     private final ArticleService service;
+
+    // Uygulamanın temel URL’sini (örn. http://localhost:8080) dışarıdan al
+    @Value("${app.base-url:http://localhost:8080}")
+    private String baseUrl;
 
     @GetMapping
     public Page<ArticleSummary> listAll(
@@ -55,6 +71,22 @@ public class AdminArticleController {
         service.delete(id);
     }
 
+    // ✅ Yeni: Quill image upload endpoint
+    @PostMapping(value = "/uploads", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Map<String, String> uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
+        String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+        Path uploadDir = Paths.get("uploads");
+        if (!Files.exists(uploadDir)) {
+            Files.createDirectories(uploadDir);
+        }
+        Path target = uploadDir.resolve(filename);
+        Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
+
+        // ✅ Tam URL döndür (örn. http://localhost:8080/files/xxx.jpg)
+        String fileUrl = baseUrl + "/files/" + filename;
+        return Map.of("url", fileUrl);
+    }
+
     private ArticleSummary toSummary(Article a) {
         var s = new ArticleSummary();
         s.setId(a.getId());
@@ -65,7 +97,7 @@ public class AdminArticleController {
         s.setAreas(a.getAreas());
         s.setCreatedAt(a.getCreatedAt());
         s.setPublished(a.isPublished());
-        s.setCoverUrl(a.getCoverUrl()); // ✅ Kapak fotoğrafı eklendi
+        s.setCoverUrl(a.getCoverUrl());
         return s;
     }
 
@@ -80,7 +112,7 @@ public class AdminArticleController {
         d.setAreas(a.getAreas());
         d.setCreatedAt(a.getCreatedAt());
         d.setPublished(a.isPublished());
-        d.setCoverUrl(a.getCoverUrl()); // ✅ Kapak fotoğrafı eklendi
+        d.setCoverUrl(a.getCoverUrl());
         return d;
     }
 }

@@ -15,8 +15,8 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/api/**")
                 .allowedOriginPatterns(
                         "http://localhost:*",
-                        "http://127.0.0.1:*"
-                        // "https://ytb-lawfirm.com"  // production domain(ler) için buraya ekle
+                        "http://127.0.0.1:*",
+                        "https://ytb-lawfirm.com"   // ✅ production domain
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
@@ -27,6 +27,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // ✅ Kapak fotoğrafları ve diğer upload edilen dosyalar için
         registry.addResourceHandler("/files/**")
-                .addResourceLocations("file:" + Paths.get("uploads").toAbsolutePath().toString() + "/");
+                .addResourceLocations("file:" + Paths.get("uploads").toAbsolutePath().toString() + "/")
+                .setCachePeriod(3600); // 1 saat cache (prod için istersen artırabilirsin)
     }
 }

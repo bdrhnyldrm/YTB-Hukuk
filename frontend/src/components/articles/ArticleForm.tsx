@@ -80,12 +80,14 @@ export default function ArticleForm({
       fd.append("file", file);
 
       try {
-        const res = await postForm<{ url: string }>("/api/admin/uploads", fd);
+        // ✅ Doğru endpoint: backend'deki /api/admin/articles/uploads
+        const res = await postForm<{ url: string }>("/api/admin/articles/uploads", fd);
 
         const quill = quillRef.current?.getEditor();
         if (!quill) return;
 
         const range = quill.getSelection(true);
+        // 🔗 Görsel tam URL ile embed ediliyor
         quill.insertEmbed(range ? range.index : 0, "image", res.url, "user");
         if (range) quill.setSelection(range.index + 1);
       } catch (e) {
@@ -112,7 +114,6 @@ export default function ArticleForm({
         },
       },
       imageResize: {
-        // resize özelliği aktif
         parchment: Quill.import("parchment"),
       },
     }),
