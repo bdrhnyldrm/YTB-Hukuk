@@ -3,7 +3,8 @@ package com.ytb.lawfirm.article;
 import com.ytb.lawfirm.article.dto.ArticleCreateUpdate;
 import com.ytb.lawfirm.user.User;
 import com.ytb.lawfirm.user.UserRepository;
-import lombok.RequiredArgsConstructor;
+
+import lombok.RequiredArgsConstructor; // ❗ Doğru şekilde bu olmalı
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.List;
 import java.util.UUID;
+
 
 @Service
 @RequiredArgsConstructor
@@ -23,8 +26,9 @@ public class ArticleService {
     @Value("${app.upload.dir:uploads}")
     private String uploadDir;
 
-    public Page<Article> search(Boolean published, Long authorId, PracticeArea area, String q, Pageable p) {
-        return repo.search(published, authorId, area, q, p);
+    public Page<Article> search(Boolean published, List<Long> authorIds, List<PracticeArea> areas, String q, Pageable p)
+    {
+        return repo.search(published, authorIds, areas, q, p);
     }
 
     public Article getPublishedBySlug(String slug) {
@@ -109,5 +113,9 @@ public class ArticleService {
         Path dest = dir.resolve(filename);
         Files.copy(cover.getInputStream(), dest, StandardCopyOption.REPLACE_EXISTING);
         return "/files/articles/" + articleId + "/" + filename;
+    }
+
+    public List<User> getDistinctAuthors() {
+        return repo.findDistinctAuthors();
     }
 }

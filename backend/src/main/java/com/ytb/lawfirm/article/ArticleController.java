@@ -5,6 +5,10 @@ import com.ytb.lawfirm.article.dto.ArticleSummary;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
+import com.ytb.lawfirm.article.dto.AuthorDto;
+import com.ytb.lawfirm.user.User;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/articles")
@@ -15,8 +19,8 @@ public class ArticleController {
 
     @GetMapping
     public Page<ArticleSummary> list(
-            @RequestParam(required = false) Long authorId,
-            @RequestParam(required = false) PracticeArea area,
+            @RequestParam(required = false) List<Long> authorId,
+            @RequestParam(required = false) List<PracticeArea> area,
             @RequestParam(required = false) String q,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
@@ -31,6 +35,14 @@ public class ArticleController {
         var a = service.getPublishedBySlug(slug);
         return toDetail(a);
     }
+
+    @GetMapping("/authors")
+    public List<AuthorDto> listAuthors() {
+        return service.getDistinctAuthors().stream()
+                .map(u -> new AuthorDto(u.getId(), u.getFullName()))
+                .toList();
+    }
+
 
     private ArticleSummary toSummary(Article a) {
         var s = new ArticleSummary();

@@ -19,6 +19,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Map;
 import java.util.UUID;
+import java.util.List;
 
 import jakarta.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,14 +31,13 @@ public class AdminArticleController {
 
     private final ArticleService service;
 
-    // Uygulamanın temel URL’sini (örn. http://localhost:8080) dışarıdan al
     @Value("${app.base-url:http://localhost:8080}")
     private String baseUrl;
 
     @GetMapping
     public Page<ArticleSummary> listAll(
-            @RequestParam(required = false) Long authorId,
-            @RequestParam(required = false) PracticeArea area,
+            @RequestParam(required = false) List<Long> authorId,
+            @RequestParam(required = false) List<PracticeArea> area,
             @RequestParam(required = false) String q,
             @RequestParam(required = false) Boolean published,
             @RequestParam(defaultValue = "0") int page,
@@ -71,7 +71,6 @@ public class AdminArticleController {
         service.delete(id);
     }
 
-    // ✅ Yeni: Quill image upload endpoint
     @PostMapping(value = "/uploads", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Map<String, String> uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
         String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
@@ -82,7 +81,6 @@ public class AdminArticleController {
         Path target = uploadDir.resolve(filename);
         Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
 
-        // ✅ Tam URL döndür (örn. http://localhost:8080/files/xxx.jpg)
         String fileUrl = baseUrl + "/files/" + filename;
         return Map.of("url", fileUrl);
     }
