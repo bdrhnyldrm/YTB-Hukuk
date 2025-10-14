@@ -2,32 +2,42 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getJSON } from "@/lib/api";
 
-export default function ArticleDetail() {
+export default function ArticleDetailPage() {
   const { slug } = useParams();
-  const [it, setIt] = useState<any | null>(null);
+  const [article, setArticle] = useState<any>(null);
 
   useEffect(() => {
-    (async () => {
-      const data = await getJSON<any>(`/api/articles/${slug}`);
-      setIt(data);
-    })();
+    const load = async () => {
+      const data = await getJSON(`/api/articles/${slug}`);
+      setArticle(data);
+    };
+    load();
   }, [slug]);
 
-  if (!it) return <div className="container-custom py-12">Yükleniyor...</div>;
+  if (!article) return <div className="container-custom py-12">Yükleniyor...</div>;
 
   return (
-    <div className="container-custom py-12">
-      <h1>{it.title}</h1>
-      <div className="text-sm text-muted-foreground mb-4">
-        {it.authorName} • {new Date(it.createdAt).toLocaleDateString()}
-      </div>
-      {it.summary && (
-        <p className="text-lg text-slate-700 mb-6">{it.summary}</p>
+    <div className="container-custom py-12 max-w-3xl mx-auto">
+      {/* Başlık */}
+      <h1 className="text-4xl font-bold text-gray-900 mb-3">{article.title}</h1>
+
+      {/* Yazar ve Tarih */}
+      <p className="text-sm text-muted-foreground mb-6">
+        {article.authorName} • {new Date(article.createdAt).toLocaleDateString()}
+      </p>
+
+      {/* Özet */}
+      {article.summary && (
+        <p className="text-xl text-gray-700 font-medium mb-6">{article.summary}</p>
       )}
-      <article
-        className="prose max-w-none"
-        dangerouslySetInnerHTML={{ __html: it.content }}
+
+      {/* İçerik */}
+      <div
+        className="prose max-w-none text-gray-800"
+        dangerouslySetInnerHTML={{ __html: article.content }}
       />
+
+
     </div>
   );
 }
