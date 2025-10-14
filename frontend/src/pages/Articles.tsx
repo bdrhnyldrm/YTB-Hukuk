@@ -45,9 +45,9 @@ export default function ArticlesPage() {
     <div className="container-custom py-12">
       <h1 className="text-3xl font-semibold mb-6">Makaleler</h1>
 
-      <div className="grid md:grid-cols-3 gap-3 mb-6">
+      <div className="grid md:grid-cols-3 gap-4 mb-6 items-center">
         <input
-          className="border rounded-md p-3"
+          className="border rounded-md px-3 py-2 h-12 w-full"
           placeholder="Ara (başlık)"
           value={q}
           onChange={(e) => setQ(e.target.value)}
@@ -57,6 +57,8 @@ export default function ArticlesPage() {
           isMulti
           options={practiceAreaOptions}
           placeholder="Hukuk Alanı Seçin"
+          className="w-full"
+          classNamePrefix="select"
           onChange={(selected) => {
             const values = (selected || []).map((s: any) => s.value);
             setAreas(values);
@@ -67,6 +69,8 @@ export default function ArticlesPage() {
           isMulti
           options={authorOptions}
           placeholder="Yazar Seçin"
+          className="w-full"
+          classNamePrefix="select"
           onChange={(selected) => {
             const values = (selected || []).map((s: any) => s.value);
             setAuthorIds(values);
