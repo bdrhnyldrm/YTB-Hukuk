@@ -17,27 +17,39 @@ export default function ArticleDetailPage() {
   if (!article) return <div className="container-custom py-12">Yükleniyor...</div>;
 
   return (
-    <div className="container-custom py-12 max-w-3xl mx-auto">
-      {/* Başlık */}
-      <h1 className="text-4xl font-bold text-gray-900 mb-3">{article.title}</h1>
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <section className="max-w-5xl mx-auto px-6 md:px-10 lg:px-16 py-16">
+        {/* Başlık */}
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+          {article.title}
+        </h1>
 
-      {/* Yazar ve Tarih */}
-      <p className="text-sm text-muted-foreground mb-6">
-        {article.authorName} • {new Date(article.createdAt).toLocaleDateString()}
-      </p>
+        {/* ✅ Hukuk Alanı Etiketi */}
+        {article.practiceArea && (
+          <span className="inline-block bg-yellow-100 text-yellow-800 text-sm font-semibold px-3 py-1 rounded-full mb-3">
+            {article.practiceArea}
+          </span>
+        )}
 
-      {/* Özet */}
-      {article.summary && (
-        <p className="text-xl text-gray-700 font-medium mb-6">{article.summary}</p>
-      )}
+        {/* Yazar ve Tarih */}
+        <p className="text-sm text-gray-600 mb-8">
+          {article.authorName} •{" "}
+          {new Date(article.createdAt).toLocaleDateString("tr-TR")}
+        </p>
 
-      {/* İçerik */}
-      <div
-        className="prose max-w-none text-gray-800"
-        dangerouslySetInnerHTML={{ __html: article.content }}
-      />
+        {/* Özet */}
+        {article.summary && (
+          <p className="text-xl text-gray-700 font-medium mb-8 leading-relaxed">
+            {article.summary}
+          </p>
+        )}
 
-
+        {/* İçerik */}
+        <article
+          className="prose prose-lg max-w-none text-gray-800 leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: article.content }}
+        />
+      </section>
     </div>
   );
 }
