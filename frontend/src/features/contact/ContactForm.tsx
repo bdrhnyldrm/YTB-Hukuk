@@ -78,7 +78,7 @@ export default function ContactForm() {
             <div className="rounded-2xl overflow-hidden border shadow-sm">
               <iframe
                 title="YTB Hukuk - Konum"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.8794661466645!2d39.710910375513784!3d41.006011319565296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40643d1c41bdd017%3A0xdfac81fef77fc93c!2sTRABZON%20AVUKAT%20%7C%20YTB%20HUKUK%20VE%20DANI%C5%9EMANLIK%20%7C%20Avukat%20Ali%20%C4%B0hsan%20YILDIRIM%20%26%20Avukat%20%C5%9E%C3%BCk%C3%BCr%20TEMEL%20%26%20Av.%20%C3%87a%C4%9Fatay%20Kaan%20BOZO%C4%9ELU!5e0!3m2!1str!2str!4v1757192873668!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.8794661466645!2d39.710910375513784!3d41.006011319565296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40643d1c41bdd017%3A0xdfac81fef77fc93c!2sTRABZON%20AVUKAT%20%7C%20YTB%20HUKUK%20VE%20DANI%C5%9EMANLIK%20%7C%20Avukat%20Ali%20%C4%B0hsan%20YILDIRIM%20%26%20Avukat%20%C5%9E%C3%BCk%C3%BCr%20TEMEL%20%26%20Av.%20%C3%87a%C4%9Fatay%20Kaan%20BOZO%C4%9ELU!5e0!3m2!1str!2str!4v1757192873668!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
                 width="100%"
                 height="300"
                 style={{ border: 0 }}

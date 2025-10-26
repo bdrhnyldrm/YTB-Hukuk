@@ -261,7 +261,7 @@ function FileInput({
           type="file"
           accept="application/pdf"
           required={required}
-          className="hidden"
+          style={{ display: "none" }} // ✅ focusable ama görünmez olur
           onChange={(e) => onChange(e.target.files?.[0] ?? null)}
         />
       </label>
