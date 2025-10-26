@@ -41,21 +41,23 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // MVP: 3 avukatı memory’de tutuyoruz
+    // ✅ 3 avukatı memory’de tutuyoruz — düz şifre yok, hash kullanılıyor
     @Bean
     public UserDetailsService users(PasswordEncoder enc) {
+
+        // KENDİ ÜRETTİĞİN HASH'LERİ BURAYA YERLEŞTİR
         UserDetails ali = User.withUsername("ali")
-                .password(enc.encode("ali123"))
+                .password("$2a$10$SscXggF15GTzNpfNmqcNNOOJJzpf2a2LS6u5eWnYavQqiUYrB9Vjy") // örnek hash
                 .roles(Role.LAWYER.name())
                 .build();
 
         UserDetails sukur = User.withUsername("sukur")
-                .password(enc.encode("sukur123"))
+                .password("$2a$10$66P97Jqks9uAmyFOjmsn7OMobCtNIWJi4rmGPRr7hEiEELOZkoj.O") // kendi hash’inle değiştir
                 .roles(Role.LAWYER.name())
                 .build();
 
         UserDetails cagatay = User.withUsername("cagatay")
-                .password(enc.encode("cagatay123"))
+                .password("$2a$10$fyooCvolvFblFbbZaCIge.n.8rkfhCNA6ZG68sUSxOYP83NrK.LYC") // kendi hash’inle değiştir
                 .roles(Role.LAWYER.name())
                 .build();
 
