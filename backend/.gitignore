@@ -31,3 +31,18 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### 🧩 GİZLİ DOSYALAR VE LOKAL AYARLAR ###
+# Ortam değişkenleri
+.env
+.env.local
+.env.*.local
+
+# Lokal konfig dosyaları (şifreli e-posta ayarları vs.)
+application-local.properties
+application-dev.properties
+application-prod.properties
+
+# Sistem dosyaları
+.DS_Store
+Thumbs.db

@@ -48,14 +48,7 @@ const lawyers: Lawyer[] = [
     photo: bedo,
     bio: "Bedirhan Yıldırım, bilgisayar mühendisliği altyapısıyla hukuk bürosuna teknoloji odaklı danışmanlık vermektedir. Özellikle siber güvenlik, kişisel verilerin korunması (KVKK & GDPR), dijital delillerin incelenmesi, veri kurtarma ve sistem analizleri konularında uzmanlık sunmakta; bu alanlarda avukatlara ve müvekkillere teknik rehberlik sağlamaktadır. Adli bilişim alanındaki çalışmalarıyla bilgisayar, mobil cihaz ve ağ sistemlerinden elde edilen verilerin güvenli şekilde toplanması, analizi ve raporlanması süreçlerinde danışmanlık yapmaktadır. Ayrıca, teknoloji kaynaklı uyuşmazlıklarda hukuki süreçlerin teknik boyutunu açıklığa kavuşturarak avukatlara destek olmakta ve müvekkillere en doğru çözüm yollarının belirlenmesinde katkıda bulunmaktadır."
   },
-  {
-    id: "yagmur-atalay",
-    name: "Av. Yağmur Atalay",
-    role: "İcra ve İflas Hukuku",
-    thumb: yagmur,
-    photo: yagmur,
-    bio: "İcra takipleri, konkordato ve iflas süreçlerinde etkin stratejiler geliştirir..."
-  },
+
 ];
 
 export default function TeamPage() {
@@ -66,7 +59,7 @@ export default function TeamPage() {
         <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-900 text-center mb-10">
           Ekibimiz
         </h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-items-center">
           {lawyers.map((l) => (
             <a
               key={l.id}
