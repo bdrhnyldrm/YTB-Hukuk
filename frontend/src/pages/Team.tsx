@@ -1,7 +1,7 @@
 // frontend/src/pages/Team.tsx
 
 import ali from "@/assets/ali.png";
-import sukur from "@/assets/sukur.png";
+import sukur from "@/assets/sukurr.jpeg";
 import cagatay from "@/assets/cagatay.png";
 import bedo from "@/assets/bedo.png";
 import yagmur from "@/assets/yagmuratalay.jpg";
