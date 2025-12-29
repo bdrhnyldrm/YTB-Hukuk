@@ -22,10 +22,7 @@ export default function ContactForm() {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!form.consent) {
-      setResult({ ok: false, text: "Lütfen KVKK aydınlatma metnini onaylayın." });
-      return;
-    }
+
 
     setLoading(true);
     setResult(null);
@@ -139,22 +136,7 @@ export default function ContactForm() {
                 />
               </label>
 
-              <label className="flex items-start gap-2 text-sm text-slate-700">
-                <input
-                  type="checkbox"
-                  name="consent"
-                  checked={form.consent}
-                  onChange={onChange}
-                  className="mt-1"
-                />
-                <span>
-                  KVKK kapsamında{" "}
-                  <a className="underline" href="/kvkk" target="_blank" rel="noreferrer">
-                    aydınlatma metnini
-                  </a>{" "}
-                  okudum ve onaylıyorum.
-                </span>
-              </label>
+
 
               <button
                 disabled={loading}

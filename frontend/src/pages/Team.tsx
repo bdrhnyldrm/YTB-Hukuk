@@ -1,6 +1,6 @@
 // frontend/src/pages/Team.tsx
 
-import ali from "@/assets/ali.png";
+import ali from "@/assets/ali.jpg";
 import sukur from "@/assets/sukurr.jpeg";
 import cagatay from "@/assets/cagatay.png";
 import bedo from "@/assets/bedo.png";
@@ -30,7 +30,7 @@ const lawyers: Lawyer[] = [
     role: "Kurucu Ortak • İş Hukuku & İcra ve İflas Hukuku",
     thumb: sukur,
     photo: sukur,
-    bio: "Av. Şükrü Temel, kurucu ortak olarak özellikle iş hukuku ve icra ve iflas hukuku alanlarında müvekkillerine etkin hukuki hizmet sunmaktadır; işçi-işveren uyuşmazlıklarında hak kayıplarını önleyecek stratejiler geliştirmekte, icra takipleri ile iflas ve konkordato süreçlerinde müvekkillerini titizlikle temsil etmekte ve her dosyada adil, hızlı ve sonuç odaklı çözümler üreterek müvekkillerinin menfaatlerini en güçlü şekilde korumayı amaçlamaktadır."
+    bio: "Av. Şükür Temel, kurucu ortak olarak özellikle iş hukuku ve icra ve iflas hukuku alanlarında müvekkillerine etkin hukuki hizmet sunmaktadır; işçi-işveren uyuşmazlıklarında hak kayıplarını önleyecek stratejiler geliştirmekte, icra takipleri ile iflas ve konkordato süreçlerinde müvekkillerini titizlikle temsil etmekte ve her dosyada adil, hızlı ve sonuç odaklı çözümler üreterek müvekkillerinin menfaatlerini en güçlü şekilde korumayı amaçlamaktadır."
   },
   {
     id: "cagatay-bozoglu",
@@ -43,10 +43,10 @@ const lawyers: Lawyer[] = [
   {
     id: "bedirhan-yildirim",
     name: "Bedirhan Yıldırım",
-    role: "Adli Bilişim ve Siber Güvenlik Danışmanı",
+    role: "Bilişim ve Siber Suçlar Danışmanı",
     thumb: bedo,
     photo: bedo,
-    bio: "Bedirhan Yıldırım, bilgisayar mühendisliği altyapısıyla hukuk bürosuna teknoloji odaklı danışmanlık vermektedir. Özellikle siber güvenlik, kişisel verilerin korunması (KVKK & GDPR), dijital delillerin incelenmesi, veri kurtarma ve sistem analizleri konularında uzmanlık sunmakta; bu alanlarda avukatlara ve müvekkillere teknik rehberlik sağlamaktadır. Adli bilişim alanındaki çalışmalarıyla bilgisayar, mobil cihaz ve ağ sistemlerinden elde edilen verilerin güvenli şekilde toplanması, analizi ve raporlanması süreçlerinde danışmanlık yapmaktadır. Ayrıca, teknoloji kaynaklı uyuşmazlıklarda hukuki süreçlerin teknik boyutunu açıklığa kavuşturarak avukatlara destek olmakta ve müvekkillere en doğru çözüm yollarının belirlenmesinde katkıda bulunmaktadır."
+    bio: "Bedirhan Yıldırım, Dijital delillerin teknik analizi, siber saldırı, veri ihlali vakalarının incelenmesi, log kayıtlarının değerlendirilmesi ve hukuki süreçlere teknik destek sağlamaktadır. Bilişim temelli uyuşmazlıklarda doğru, anlaşılır ve mahkemeye uygun teknik görüşler üretmektedir."
   },
 
 ];
